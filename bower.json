@@ -1,7 +1,0 @@
-{
-  "name": "office-ui-fabric-js-rails",
-  "version": "1.0.0.0",
-  "dependencies": {
-    "office-ui-fabric-js": "git@github.com:OfficeDev/office-ui-fabric-js.git#1.0.0"
-  }
-}

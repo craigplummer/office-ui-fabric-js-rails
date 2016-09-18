@@ -8,9 +8,10 @@ task :default => :spec
 namespace :assets do
   desc 'Update Office UI Fabric assets'
   task update: :clean do
-    sh 'bower install'
-    sh 'cp -r bower_components/office-ui-fabric-js/dist/components/**/*.scss vendor/assets/scss/components'
-    sh 'cp -r bower_components/office-ui-fabric-js/dist/css/fabric.components* vendor/assets/css'
+    sh 'npm install'
+    sh 'cp -r node_modules/office-ui-fabric-js/dist/components/**/*.scss vendor/assets/scss/components'
+    sh 'cp -r node_modules/office-ui-fabric-js/dist/css/fabric.components* vendor/assets/css'
+    sh 'cp -r node_modules/office-ui-fabric-js/dist/js/*.js vendor/assets/js'
 
     puts "Updated to the latest version of Office UI Fabric"
   end
