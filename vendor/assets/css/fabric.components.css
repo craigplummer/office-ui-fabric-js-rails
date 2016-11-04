@@ -1,24 +1,8 @@
 /* Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. */
 /**
- * Office UI Fabric JS 1.1.0
+ * Office UI Fabric JS 1.2.0
  * The JavaScript front-end framework for building experiences for Office 365.
  **/
-.ms-Icon--xs {
-  font-size: 10px;
-}
-
-.ms-Icon--s {
-  font-size: 12px;
-}
-
-.ms-Icon--m {
-  font-size: 16px;
-}
-
-.ms-Icon--l {
-  font-size: 20px;
-}
-
 /*
   Your use of the content in the files referenced here are subject to the terms of the license at http://aka.ms/fabric-font-license
 */
@@ -3317,7 +3301,6 @@
 .ms-MessageBar-text {
   font-family: 'Segoe UI WestEuropean', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
-  color: #333333;
   font-size: 12px;
   font-weight: 400;
 }
@@ -3645,9 +3628,18 @@
   }
 }
 
-.ms-PeoplePicker-searchBox::-webkit-input-placeholder,
-.ms-PeoplePicker-searchBox::-moz-placeholder,
-.ms-PeoplePicker-searchBox:-moz-placeholder,
+.ms-PeoplePicker-searchBox::-webkit-input-placeholder {
+  color: #666666;
+}
+
+.ms-PeoplePicker-searchBox::-moz-placeholder {
+  color: #666666;
+}
+
+.ms-PeoplePicker-searchBox:-moz-placeholder {
+  color: #666666;
+}
+
 .ms-PeoplePicker-searchBox:-ms-input-placeholder {
   color: #666666;
 }
@@ -3946,14 +3938,6 @@
 }
 
 @media (max-width: 479px) {
-  .ms-PeoplePicker-results.ms-PeoplePicker-results--facePile .ms-Persona-imageArea,
-  .ms-PeoplePicker-results.ms-PeoplePicker-results--facePile .ms-Persona-image,
-  .ms-PeoplePicker-selectedPeople .ms-Persona-imageArea,
-  .ms-PeoplePicker-selectedPeople .ms-Persona-image {
-    width: 32px;
-    height: 32px;
-  }
-
   .ms-PeoplePicker-results.ms-PeoplePicker-results--facePile .ms-Persona-placeholder,
   .ms-PeoplePicker-selectedPeople .ms-Persona-placeholder {
     font-size: 28px;
@@ -5676,9 +5660,18 @@
   cursor: default;
 }
 
-.ms-TextField.is-disabled::-webkit-input-placeholder,
-.ms-TextField.is-disabled::-moz-placeholder,
-.ms-TextField.is-disabled:-moz-placeholder,
+.ms-TextField.is-disabled::-webkit-input-placeholder {
+  color: #a6a6a6;
+}
+
+.ms-TextField.is-disabled::-moz-placeholder {
+  color: #a6a6a6;
+}
+
+.ms-TextField.is-disabled:-moz-placeholder {
+  color: #a6a6a6;
+}
+
 .ms-TextField.is-disabled:-ms-input-placeholder {
   color: #a6a6a6;
 }
@@ -5688,9 +5681,21 @@
   color: #a80000;
 }
 
-.ms-TextField.is-required::-webkit-input-placeholder::after,
-.ms-TextField.is-required::-moz-placeholder::after,
-.ms-TextField.is-required:-moz-placeholder::after,
+.ms-TextField.is-required::-webkit-input-placeholder::after {
+  content: ' *';
+  color: #a80000;
+}
+
+.ms-TextField.is-required::-moz-placeholder::after {
+  content: ' *';
+  color: #a80000;
+}
+
+.ms-TextField.is-required:-moz-placeholder::after {
+  content: ' *';
+  color: #a80000;
+}
+
 .ms-TextField.is-required:-ms-input-placeholder::after {
   content: ' *';
   color: #a80000;
@@ -5747,9 +5752,18 @@
   cursor: default;
 }
 
-.ms-TextField-field::-webkit-input-placeholder,
-.ms-TextField-field::-moz-placeholder,
-.ms-TextField-field:-moz-placeholder,
+.ms-TextField-field::-webkit-input-placeholder {
+  color: #666666;
+}
+
+.ms-TextField-field::-moz-placeholder {
+  color: #666666;
+}
+
+.ms-TextField-field:-moz-placeholder {
+  color: #666666;
+}
+
 .ms-TextField-field:-ms-input-placeholder {
   color: #666666;
 }
@@ -5915,7 +5929,6 @@
   -webkit-font-smoothing: antialiased;
   font-family: 'Segoe UI WestEuropean', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
-  color: #333333;
   font-size: 14px;
   font-weight: 400;
   box-sizing: border-box;
