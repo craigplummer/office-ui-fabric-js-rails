@@ -1,3 +1,7 @@
+/**
+ * Office UI Fabric JS 1.2.0
+ * The JavaScript front-end framework for building experiences for Office 365.
+ **/
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 //
@@ -364,12 +368,6 @@ $ms-Persona-leftPadding: 16px;
 .ms-PeoplePicker-results.ms-PeoplePicker-results--facePile,
 .ms-PeoplePicker-selectedPeople {
   @media (max-width: $ms-screen-sm-max) {
-    .ms-Persona-imageArea,
-    .ms-Persona-image {
-      width: 32px;
-      height: 32px;
-    }
-
     .ms-Persona-placeholder {
       font-size: 28px;
       top: 6px;

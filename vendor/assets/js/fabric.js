@@ -1,4 +1,7 @@
-//Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
+/**
+ * Office UI Fabric JS 1.2.0
+ * The JavaScript front-end framework for building experiences for Office 365.
+ **/
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 // "use strict";
 var fabric;
@@ -318,6 +321,21 @@ var fabric;
 })(fabric || (fabric = {}));
 
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
+// "use strict";
+// CustomEvent Polyfill to support IE
+(function () {
+    function CustomEvent(event, params) {
+        params = params || { bubbles: false, cancelable: false, detail: undefined };
+        var evt = document.createEvent("CustomEvent");
+        evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+        return evt;
+    }
+    ;
+    CustomEvent.prototype = Event.prototype;
+    window.CustomEvent = CustomEvent;
+})();
+
+// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 /**
  * @namespace fabric
  */
@@ -588,1443 +606,7 @@ var fabric;
 
 
 
-var FabricTemplateLibrary = (function () {
-    function FabricTemplateLibrary() {
-    }
-    FabricTemplateLibrary.prototype.Breadcrumb = function () {
-        var Breadcrumb0 = document.createElement("div");
-        Breadcrumb0.setAttribute("class", "ms-Breadcrumb ");
-        Breadcrumb0.innerHTML += "  ";
-        var Breadcrumb0c1 = document.createElement("div");
-        Breadcrumb0c1.setAttribute("class", "ms-Breadcrumb-overflow");
-        Breadcrumb0c1.innerHTML += "    ";
-        var Breadcrumb0c1c1 = document.createElement("div");
-        Breadcrumb0c1c1.setAttribute("class", "ms-Breadcrumb-overflowButton ms-Icon ms-Icon--More");
-        Breadcrumb0c1c1.setAttribute("tabindex", "1");
-        Breadcrumb0c1.appendChild(Breadcrumb0c1c1);
-        Breadcrumb0c1.innerHTML += "    ";
-        var Breadcrumb0c1c3 = document.createElement("div");
-        Breadcrumb0c1c3.setAttribute("class", "ms-Breadcrumb-overflowMenu");
-        Breadcrumb0c1c3.innerHTML += "      ";
-        var Breadcrumb0c1c3c1 = document.createElement("ul");
-        Breadcrumb0c1c3c1.setAttribute("class", "ms-ContextualMenu is-open");
-        Breadcrumb0c1c3.appendChild(Breadcrumb0c1c3c1);
-        Breadcrumb0c1c3.innerHTML += "    ";
-        Breadcrumb0c1.appendChild(Breadcrumb0c1c3);
-        Breadcrumb0c1.innerHTML += "  ";
-        Breadcrumb0.appendChild(Breadcrumb0c1);
-        Breadcrumb0.innerHTML += "  ";
-        var Breadcrumb0c3 = document.createElement("ul");
-        Breadcrumb0c3.setAttribute("class", "ms-Breadcrumb-list");
-        Breadcrumb0c3.innerHTML += "  ";
-        Breadcrumb0.appendChild(Breadcrumb0c3);
-        Breadcrumb0.innerHTML += "";
-        return Breadcrumb0;
-    };
-    FabricTemplateLibrary.prototype.Button = function () {
-        var Button0 = document.createElement("button");
-        Button0.setAttribute("class", "ms-Button     ");
-        Button0.innerHTML += "  ";
-        var Button0c1 = document.createElement("span");
-        Button0c1.setAttribute("class", "ms-Button-label");
-        Button0c1.innerHTML += "Create Account";
-        Button0.appendChild(Button0c1);
-        Button0.innerHTML += "";
-        return Button0;
-    };
-    FabricTemplateLibrary.prototype.Callout = function () {
-        var Callout0 = document.createElement("div");
-        Callout0.setAttribute("class", "ms-Callout           ");
-        Callout0.innerHTML += "  ";
-        var Callout0c1 = document.createElement("div");
-        Callout0c1.setAttribute("class", "ms-Callout-main");
-        Callout0c1.innerHTML += "    ";
-        var Callout0c1c1 = document.createElement("div");
-        Callout0c1c1.setAttribute("class", "ms-Callout-header");
-        Callout0c1c1.innerHTML += "      ";
-        var Callout0c1c1c1 = document.createElement("p");
-        Callout0c1c1c1.setAttribute("class", "ms-Callout-title");
-        Callout0c1c1.appendChild(Callout0c1c1c1);
-        Callout0c1c1.innerHTML += "    ";
-        Callout0c1.appendChild(Callout0c1c1);
-        Callout0c1.innerHTML += "    ";
-        var Callout0c1c3 = document.createElement("div");
-        Callout0c1c3.setAttribute("class", "ms-Callout-inner");
-        Callout0c1c3.innerHTML += "      ";
-        var Callout0c1c3c1 = document.createElement("div");
-        Callout0c1c3c1.setAttribute("class", "ms-Callout-content");
-        Callout0c1c3c1.innerHTML += "        ";
-        var Callout0c1c3c1c1 = document.createElement("p");
-        Callout0c1c3c1c1.setAttribute("class", "ms-Callout-subText ");
-        Callout0c1c3c1.appendChild(Callout0c1c3c1c1);
-        Callout0c1c3c1.innerHTML += "      ";
-        Callout0c1c3.appendChild(Callout0c1c3c1);
-        Callout0c1c3.innerHTML += "      ";
-        var Callout0c1c3c3 = document.createElement("div");
-        Callout0c1c3c3.setAttribute("class", "ms-Callout-actions");
-        Callout0c1c3c3.innerHTML += "      ";
-        Callout0c1c3.appendChild(Callout0c1c3c3);
-        Callout0c1c3.innerHTML += "    ";
-        Callout0c1.appendChild(Callout0c1c3);
-        Callout0c1.innerHTML += "       ";
-        Callout0.appendChild(Callout0c1);
-        Callout0.innerHTML += "";
-        return Callout0;
-    };
-    FabricTemplateLibrary.prototype.CheckBox = function () {
-        var CheckBox0 = document.createElement("div");
-        CheckBox0.setAttribute("class", "ms-CheckBox");
-        CheckBox0.innerHTML += "     ";
-        var CheckBox0c1 = document.createElement("input");
-        CheckBox0c1.setAttribute("tabindex", "-1");
-        CheckBox0c1.setAttribute("type", "checkbox");
-        CheckBox0c1.setAttribute("class", "ms-CheckBox-input");
-        CheckBox0.appendChild(CheckBox0c1);
-        CheckBox0.innerHTML += "    ";
-        var CheckBox0c3 = document.createElement("label");
-        CheckBox0c3.setAttribute("role", "");
-        CheckBox0c3.setAttribute("class", "ms-CheckBox-field ");
-        CheckBox0c3.setAttribute("tabindex", "0");
-        CheckBox0c3.setAttribute("aria-checked", "");
-        CheckBox0c3.setAttribute("name", "");
-        CheckBox0c3.innerHTML += "        ";
-        var CheckBox0c3c1 = document.createElement("span");
-        CheckBox0c3c1.setAttribute("class", "ms-Label");
-        CheckBox0c3.appendChild(CheckBox0c3c1);
-        CheckBox0c3.innerHTML += "    ";
-        CheckBox0.appendChild(CheckBox0c3);
-        CheckBox0.innerHTML += "";
-        return CheckBox0;
-    };
-    FabricTemplateLibrary.prototype.ChoiceFieldGroup = function () {
-        var ChoiceFieldGroup0 = document.createElement("div");
-        ChoiceFieldGroup0.setAttribute("class", "ms-ChoiceFieldGroup");
-        ChoiceFieldGroup0.setAttribute("id", "");
-        ChoiceFieldGroup0.setAttribute("role", "");
-        ChoiceFieldGroup0.innerHTML += "  ";
-        var ChoiceFieldGroup0c1 = document.createElement("div");
-        ChoiceFieldGroup0c1.setAttribute("class", "ms-ChoiceFieldGroup-title");
-        ChoiceFieldGroup0c1.innerHTML += "    ";
-        var ChoiceFieldGroup0c1c1 = document.createElement("label");
-        ChoiceFieldGroup0c1c1.setAttribute("class", "ms-Label ");
-        ChoiceFieldGroup0c1.appendChild(ChoiceFieldGroup0c1c1);
-        ChoiceFieldGroup0c1.innerHTML += "  ";
-        ChoiceFieldGroup0.appendChild(ChoiceFieldGroup0c1);
-        ChoiceFieldGroup0.innerHTML += "  ";
-        var ChoiceFieldGroup0c3 = document.createElement("ul");
-        ChoiceFieldGroup0c3.setAttribute("class", "ms-ChoiceFieldGroup-list");
-        ChoiceFieldGroup0c3.innerHTML += "  ";
-        ChoiceFieldGroup0.appendChild(ChoiceFieldGroup0c3);
-        ChoiceFieldGroup0.innerHTML += "";
-        return ChoiceFieldGroup0;
-    };
-    FabricTemplateLibrary.prototype.CommandBar = function () {
-        var CommandBar0 = document.createElement("div");
-        CommandBar0.setAttribute("class", "ms-CommandBar ");
-        CommandBar0.innerHTML += "  ";
-        var CommandBar0c1 = document.createElement("div");
-        CommandBar0c1.setAttribute("class", "ms-CommandBar-mainArea");
-        CommandBar0c1.innerHTML += "  ";
-        CommandBar0.appendChild(CommandBar0c1);
-        CommandBar0.innerHTML += "";
-        return CommandBar0;
-    };
-    FabricTemplateLibrary.prototype.CommandButton = function () {
-        var CommandButton0 = document.createElement("div");
-        CommandButton0.setAttribute("class", "ms-CommandButton    ");
-        CommandButton0.innerHTML += "  ";
-        var CommandButton0c1 = document.createElement("button");
-        CommandButton0c1.setAttribute("class", "ms-CommandButton-button");
-        CommandButton0c1.innerHTML += "      ";
-        var CommandButton0c1c1 = document.createElement("span");
-        CommandButton0c1c1.setAttribute("class", "ms-CommandButton-icon ms-fontColor-themePrimary");
-        var CommandButton0c1c1c0 = document.createElement("i");
-        CommandButton0c1c1c0.setAttribute("class", "ms-Icon ms-Icon--circleFill");
-        CommandButton0c1c1.appendChild(CommandButton0c1c1c0);
-        CommandButton0c1.appendChild(CommandButton0c1c1);
-        var CommandButton0c1c2 = document.createElement("span");
-        CommandButton0c1c2.setAttribute("class", "ms-CommandButton-label");
-        CommandButton0c1c2.innerHTML += "Command";
-        CommandButton0c1.appendChild(CommandButton0c1c2);
-        CommandButton0c1.innerHTML += "  ";
-        CommandButton0.appendChild(CommandButton0c1);
-        CommandButton0.innerHTML += "";
-        return CommandButton0;
-    };
-    FabricTemplateLibrary.prototype.ContextualHost = function () {
-        var ContextualHost0 = document.createElement("div");
-        ContextualHost0.setAttribute("class", "ms-ContextualHost              ");
-        ContextualHost0.innerHTML += "  ";
-        var ContextualHost0c1 = document.createElement("div");
-        ContextualHost0c1.setAttribute("class", "ms-ContextualHost-main");
-        ContextualHost0c1.innerHTML += "        ";
-        ContextualHost0.appendChild(ContextualHost0c1);
-        ContextualHost0.innerHTML += "  ";
-        var ContextualHost0c3 = document.createElement("div");
-        ContextualHost0c3.setAttribute("class", "ms-ContextualHost-beak");
-        ContextualHost0.appendChild(ContextualHost0c3);
-        ContextualHost0.innerHTML += "";
-        return ContextualHost0;
-    };
-    FabricTemplateLibrary.prototype.ContextualMenu = function () {
-        var ContextualMenu0 = document.createElement("ul");
-        ContextualMenu0.setAttribute("class", "ms-ContextualMenu  ");
-        ContextualMenu0.innerHTML += "";
-        return ContextualMenu0;
-    };
-    FabricTemplateLibrary.prototype.DatePicker = function () {
-        var DatePicker0 = document.createElement("div");
-        DatePicker0.setAttribute("class", "ms-DatePicker");
-        DatePicker0.innerHTML += "  ";
-        var DatePicker0c1 = document.createElement("div");
-        DatePicker0c1.setAttribute("class", "ms-TextField");
-        DatePicker0c1.innerHTML += "    ";
-        var DatePicker0c1c1 = document.createElement("label");
-        DatePicker0c1c1.setAttribute("class", "ms-Label");
-        DatePicker0c1c1.innerHTML += "Start date";
-        DatePicker0c1.appendChild(DatePicker0c1c1);
-        DatePicker0c1.innerHTML += "    ";
-        var DatePicker0c1c3 = document.createElement("i");
-        DatePicker0c1c3.setAttribute("class", "ms-DatePicker-event ms-Icon ms-Icon--Event");
-        DatePicker0c1.appendChild(DatePicker0c1c3);
-        DatePicker0c1.innerHTML += "    ";
-        var DatePicker0c1c5 = document.createElement("input");
-        DatePicker0c1c5.setAttribute("class", "ms-TextField-field");
-        DatePicker0c1c5.setAttribute("type", "text");
-        DatePicker0c1c5.setAttribute("placeholder", "Select a date&hellip;");
-        DatePicker0c1.appendChild(DatePicker0c1c5);
-        DatePicker0c1.innerHTML += "  ";
-        DatePicker0.appendChild(DatePicker0c1);
-        DatePicker0.innerHTML += "  ";
-        var DatePicker0c3 = document.createElement("div");
-        DatePicker0c3.setAttribute("class", "ms-DatePicker-monthComponents");
-        DatePicker0c3.innerHTML += "    ";
-        var DatePicker0c3c1 = document.createElement("span");
-        DatePicker0c3c1.setAttribute("class", "ms-DatePicker-nextMonth js-nextMonth");
-        var DatePicker0c3c1c0 = document.createElement("i");
-        DatePicker0c3c1c0.setAttribute("class", "ms-Icon ms-Icon--ChevronRight");
-        DatePicker0c3c1.appendChild(DatePicker0c3c1c0);
-        DatePicker0c3.appendChild(DatePicker0c3c1);
-        DatePicker0c3.innerHTML += "    ";
-        var DatePicker0c3c3 = document.createElement("span");
-        DatePicker0c3c3.setAttribute("class", "ms-DatePicker-prevMonth js-prevMonth");
-        var DatePicker0c3c3c0 = document.createElement("i");
-        DatePicker0c3c3c0.setAttribute("class", "ms-Icon ms-Icon--ChevronLeft");
-        DatePicker0c3c3.appendChild(DatePicker0c3c3c0);
-        DatePicker0c3.appendChild(DatePicker0c3c3);
-        DatePicker0c3.innerHTML += "    ";
-        var DatePicker0c3c5 = document.createElement("div");
-        DatePicker0c3c5.setAttribute("class", "ms-DatePicker-headerToggleView js-showMonthPicker");
-        DatePicker0c3.appendChild(DatePicker0c3c5);
-        DatePicker0c3.innerHTML += "  ";
-        DatePicker0.appendChild(DatePicker0c3);
-        DatePicker0.innerHTML += "  ";
-        var DatePicker0c5 = document.createElement("span");
-        DatePicker0c5.setAttribute("class", "ms-DatePicker-goToday js-goToday");
-        DatePicker0c5.innerHTML += "Go to today";
-        DatePicker0.appendChild(DatePicker0c5);
-        DatePicker0.innerHTML += "  ";
-        var DatePicker0c7 = document.createElement("div");
-        DatePicker0c7.setAttribute("class", "ms-DatePicker-monthPicker");
-        DatePicker0c7.innerHTML += "    ";
-        var DatePicker0c7c1 = document.createElement("div");
-        DatePicker0c7c1.setAttribute("class", "ms-DatePicker-header");
-        DatePicker0c7c1.innerHTML += "      ";
-        var DatePicker0c7c1c1 = document.createElement("div");
-        DatePicker0c7c1c1.setAttribute("class", "ms-DatePicker-yearComponents");
-        DatePicker0c7c1c1.innerHTML += "        ";
-        var DatePicker0c7c1c1c1 = document.createElement("span");
-        DatePicker0c7c1c1c1.setAttribute("class", "ms-DatePicker-nextYear js-nextYear");
-        var DatePicker0c7c1c1c1c0 = document.createElement("i");
-        DatePicker0c7c1c1c1c0.setAttribute("class", "ms-Icon ms-Icon--ChevronRight");
-        DatePicker0c7c1c1c1.appendChild(DatePicker0c7c1c1c1c0);
-        DatePicker0c7c1c1.appendChild(DatePicker0c7c1c1c1);
-        DatePicker0c7c1c1.innerHTML += "        ";
-        var DatePicker0c7c1c1c3 = document.createElement("span");
-        DatePicker0c7c1c1c3.setAttribute("class", "ms-DatePicker-prevYear js-prevYear");
-        var DatePicker0c7c1c1c3c0 = document.createElement("i");
-        DatePicker0c7c1c1c3c0.setAttribute("class", "ms-Icon ms-Icon--ChevronLeft");
-        DatePicker0c7c1c1c3.appendChild(DatePicker0c7c1c1c3c0);
-        DatePicker0c7c1c1.appendChild(DatePicker0c7c1c1c3);
-        DatePicker0c7c1c1.innerHTML += "      ";
-        DatePicker0c7c1.appendChild(DatePicker0c7c1c1);
-        DatePicker0c7c1.innerHTML += "      ";
-        var DatePicker0c7c1c3 = document.createElement("div");
-        DatePicker0c7c1c3.setAttribute("class", "ms-DatePicker-currentYear js-showYearPicker");
-        DatePicker0c7c1.appendChild(DatePicker0c7c1c3);
-        DatePicker0c7c1.innerHTML += "    ";
-        DatePicker0c7.appendChild(DatePicker0c7c1);
-        DatePicker0c7.innerHTML += "    ";
-        var DatePicker0c7c3 = document.createElement("div");
-        DatePicker0c7c3.setAttribute("class", "ms-DatePicker-optionGrid");
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c1 = document.createElement("span");
-        DatePicker0c7c3c1.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c1.setAttribute("data-month", "0");
-        DatePicker0c7c3c1.innerHTML += "Jan";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c1);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c3 = document.createElement("span");
-        DatePicker0c7c3c3.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c3.setAttribute("data-month", "1");
-        DatePicker0c7c3c3.innerHTML += "Feb";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c3);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c5 = document.createElement("span");
-        DatePicker0c7c3c5.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c5.setAttribute("data-month", "2");
-        DatePicker0c7c3c5.innerHTML += "Mar";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c5);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c7 = document.createElement("span");
-        DatePicker0c7c3c7.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c7.setAttribute("data-month", "3");
-        DatePicker0c7c3c7.innerHTML += "Apr";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c7);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c9 = document.createElement("span");
-        DatePicker0c7c3c9.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c9.setAttribute("data-month", "4");
-        DatePicker0c7c3c9.innerHTML += "May";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c9);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c11 = document.createElement("span");
-        DatePicker0c7c3c11.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c11.setAttribute("data-month", "5");
-        DatePicker0c7c3c11.innerHTML += "Jun";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c11);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c13 = document.createElement("span");
-        DatePicker0c7c3c13.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c13.setAttribute("data-month", "6");
-        DatePicker0c7c3c13.innerHTML += "Jul";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c13);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c15 = document.createElement("span");
-        DatePicker0c7c3c15.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c15.setAttribute("data-month", "7");
-        DatePicker0c7c3c15.innerHTML += "Aug";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c15);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c17 = document.createElement("span");
-        DatePicker0c7c3c17.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c17.setAttribute("data-month", "8");
-        DatePicker0c7c3c17.innerHTML += "Sep";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c17);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c19 = document.createElement("span");
-        DatePicker0c7c3c19.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c19.setAttribute("data-month", "9");
-        DatePicker0c7c3c19.innerHTML += "Oct";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c19);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c21 = document.createElement("span");
-        DatePicker0c7c3c21.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c21.setAttribute("data-month", "10");
-        DatePicker0c7c3c21.innerHTML += "Nov";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c21);
-        DatePicker0c7c3.innerHTML += "      ";
-        var DatePicker0c7c3c23 = document.createElement("span");
-        DatePicker0c7c3c23.setAttribute("class", "ms-DatePicker-monthOption js-changeDate");
-        DatePicker0c7c3c23.setAttribute("data-month", "11");
-        DatePicker0c7c3c23.innerHTML += "Dec";
-        DatePicker0c7c3.appendChild(DatePicker0c7c3c23);
-        DatePicker0c7c3.innerHTML += "    ";
-        DatePicker0c7.appendChild(DatePicker0c7c3);
-        DatePicker0c7.innerHTML += "  ";
-        DatePicker0.appendChild(DatePicker0c7);
-        DatePicker0.innerHTML += "  ";
-        var DatePicker0c9 = document.createElement("div");
-        DatePicker0c9.setAttribute("class", "ms-DatePicker-yearPicker");
-        DatePicker0c9.innerHTML += "    ";
-        var DatePicker0c9c1 = document.createElement("div");
-        DatePicker0c9c1.setAttribute("class", "ms-DatePicker-decadeComponents");
-        DatePicker0c9c1.innerHTML += "      ";
-        var DatePicker0c9c1c1 = document.createElement("span");
-        DatePicker0c9c1c1.setAttribute("class", "ms-DatePicker-nextDecade js-nextDecade");
-        var DatePicker0c9c1c1c0 = document.createElement("i");
-        DatePicker0c9c1c1c0.setAttribute("class", "ms-Icon ms-Icon--ChevronRight");
-        DatePicker0c9c1c1.appendChild(DatePicker0c9c1c1c0);
-        DatePicker0c9c1.appendChild(DatePicker0c9c1c1);
-        DatePicker0c9c1.innerHTML += "      ";
-        var DatePicker0c9c1c3 = document.createElement("span");
-        DatePicker0c9c1c3.setAttribute("class", "ms-DatePicker-prevDecade js-prevDecade");
-        var DatePicker0c9c1c3c0 = document.createElement("i");
-        DatePicker0c9c1c3c0.setAttribute("class", "ms-Icon ms-Icon--ChevronLeft");
-        DatePicker0c9c1c3.appendChild(DatePicker0c9c1c3c0);
-        DatePicker0c9c1.appendChild(DatePicker0c9c1c3);
-        DatePicker0c9c1.innerHTML += "    ";
-        DatePicker0c9.appendChild(DatePicker0c9c1);
-        DatePicker0c9.innerHTML += "  ";
-        DatePicker0.appendChild(DatePicker0c9);
-        DatePicker0.innerHTML += "";
-        return DatePicker0;
-    };
-    FabricTemplateLibrary.prototype.DetailsList = function () {
-        var DetailsList0 = document.createElement("div");
-        DetailsList0.setAttribute("class", "ms-DetailsList");
-        DetailsList0.innerHTML += "  ";
-        DetailsList0.innerHTML += "  ";
-        var DetailsList0c3 = document.createElement("div");
-        DetailsList0c3.setAttribute("class", "ms-DetailsHeader ms-font-m");
-        DetailsList0c3.innerHTML += "      ";
-        var DetailsList0c3c1 = document.createElement("button");
-        DetailsList0c3c1.setAttribute("class", "ms-DetailsHeader-cell is-check");
-        DetailsList0c3c1.innerHTML += "        ";
-        var DetailsList0c3c1c1 = document.createElement("svg");
-        DetailsList0c3c1c1.setAttribute("class", "ms-Check");
-        DetailsList0c3c1c1.setAttribute("height", "20");
-        DetailsList0c3c1c1.setAttribute("width", "20");
-        DetailsList0c3c1c1.innerHTML += "        ";
-        DetailsList0c3c1c1.innerHTML += "          ";
-        var DetailsList0c3c1c1c3 = document.createElement("circle");
-        DetailsList0c3c1c1c3.setAttribute("class", "ms-Check-circle");
-        DetailsList0c3c1c1c3.setAttribute("cx", "10");
-        DetailsList0c3c1c1c3.setAttribute("cy", "10");
-        DetailsList0c3c1c1c3.setAttribute("r", "9");
-        DetailsList0c3c1c1c3.setAttribute("stroke-width", "1");
-        DetailsList0c3c1c1.appendChild(DetailsList0c3c1c1c3);
-        DetailsList0c3c1c1.innerHTML += "          ";
-        var DetailsList0c3c1c1c5 = document.createElement("polyline");
-        DetailsList0c3c1c1c5.setAttribute("class", "ms-Check-check");
-        DetailsList0c3c1c1c5.setAttribute("points", "6.3,10.3 9,13 13.3,7.5");
-        DetailsList0c3c1c1c5.setAttribute("stroke-width", "1.5");
-        DetailsList0c3c1c1c5.setAttribute("fill", "none");
-        DetailsList0c3c1c1.appendChild(DetailsList0c3c1c1c5);
-        DetailsList0c3c1c1.innerHTML += "        ";
-        DetailsList0c3c1.appendChild(DetailsList0c3c1c1);
-        DetailsList0c3c1.innerHTML += "      ";
-        DetailsList0c3.appendChild(DetailsList0c3c1);
-        DetailsList0c3.innerHTML += "      ";
-        var DetailsList0c3c3 = document.createElement("div");
-        DetailsList0c3c3.setAttribute("class", "ms-DetailsHeader-cellSizeWrapper");
-        DetailsList0c3c3.innerHTML += "        ";
-        var DetailsList0c3c3c1 = document.createElement("div");
-        DetailsList0c3c3c1.setAttribute("class", "ms-DetailsHeader-cellWrapper");
-        DetailsList0c3c3c1.innerHTML += "          ";
-        var DetailsList0c3c3c1c1 = document.createElement("button");
-        DetailsList0c3c3c1c1.setAttribute("class", "ms-DetailsHeader-cell");
-        DetailsList0c3c3c1c1.setAttribute("style", "width: 300px");
-        DetailsList0c3c3c1c1.innerHTML += "            ";
-        var DetailsList0c3c3c1c1c1 = document.createElement("span");
-        DetailsList0c3c3c1c1c1.setAttribute("class", "ms-DetailsHeader-sortArrow ms-Icon--arrowDown2");
-        DetailsList0c3c3c1c1c1.innerHTML += "              ";
-        var DetailsList0c3c3c1c1c1c1 = document.createElement("i");
-        DetailsList0c3c3c1c1c1c1.setAttribute("class", "ms-DetailsHeader-filterChevron ms-Icon ms-Icon--chevronDown");
-        DetailsList0c3c3c1c1c1.appendChild(DetailsList0c3c3c1c1c1c1);
-        DetailsList0c3c3c1c1c1.innerHTML += "            ";
-        DetailsList0c3c3c1c1.appendChild(DetailsList0c3c3c1c1c1);
-        DetailsList0c3c3c1c1.innerHTML += "            ";
-        var DetailsList0c3c3c1c1c3 = document.createElement("span");
-        DetailsList0c3c3c1c1c3.setAttribute("class", "ms-DetailsHeader-cellText");
-        DetailsList0c3c3c1c1c3.innerHTML += "Name";
-        DetailsList0c3c3c1c1.appendChild(DetailsList0c3c3c1c1c3);
-        DetailsList0c3c3c1c1.innerHTML += "          ";
-        DetailsList0c3c3c1.appendChild(DetailsList0c3c3c1c1);
-        DetailsList0c3c3c1.innerHTML += "        ";
-        DetailsList0c3c3c1.innerHTML += "        ";
-        var DetailsList0c3c3c1c5 = document.createElement("div");
-        DetailsList0c3c3c1c5.setAttribute("class", "ms-DetailsHeader-cell is-sizer");
-        DetailsList0c3c3c1.appendChild(DetailsList0c3c3c1c5);
-        DetailsList0c3c3c1.innerHTML += "        ";
-        DetailsList0c3c3.appendChild(DetailsList0c3c3c1);
-        DetailsList0c3c3.innerHTML += "      ";
-        DetailsList0c3.appendChild(DetailsList0c3c3);
-        DetailsList0c3.innerHTML += "      ";
-        var DetailsList0c3c5 = document.createElement("div");
-        DetailsList0c3c5.setAttribute("class", "ms-DetailsHeader-cellSizeWrapper");
-        DetailsList0c3c5.innerHTML += "        ";
-        var DetailsList0c3c5c1 = document.createElement("div");
-        DetailsList0c3c5c1.setAttribute("class", "ms-DetailsHeader-cellWrapper");
-        DetailsList0c3c5c1.innerHTML += "          ";
-        var DetailsList0c3c5c1c1 = document.createElement("button");
-        DetailsList0c3c5c1c1.setAttribute("class", "ms-DetailsHeader-cell");
-        DetailsList0c3c5c1c1.setAttribute("style", "width: 200px");
-        DetailsList0c3c5c1c1.innerHTML += "            ";
-        var DetailsList0c3c5c1c1c1 = document.createElement("span");
-        DetailsList0c3c5c1c1c1.setAttribute("class", "ms-DetailsHeader-sortArrow ms-Icon--arrowDown2");
-        DetailsList0c3c5c1c1c1.innerHTML += "              ";
-        var DetailsList0c3c5c1c1c1c1 = document.createElement("i");
-        DetailsList0c3c5c1c1c1c1.setAttribute("class", "ms-DetailsHeader-filterChevron ms-Icon ms-Icon--chevronDown");
-        DetailsList0c3c5c1c1c1.appendChild(DetailsList0c3c5c1c1c1c1);
-        DetailsList0c3c5c1c1c1.innerHTML += "            ";
-        DetailsList0c3c5c1c1.appendChild(DetailsList0c3c5c1c1c1);
-        DetailsList0c3c5c1c1.innerHTML += "            ";
-        var DetailsList0c3c5c1c1c3 = document.createElement("span");
-        DetailsList0c3c5c1c1c3.setAttribute("class", "ms-DetailsHeader-cellText");
-        DetailsList0c3c5c1c1c3.innerHTML += "Modified date";
-        DetailsList0c3c5c1c1.appendChild(DetailsList0c3c5c1c1c3);
-        DetailsList0c3c5c1c1.innerHTML += "          ";
-        DetailsList0c3c5c1.appendChild(DetailsList0c3c5c1c1);
-        DetailsList0c3c5c1.innerHTML += "        ";
-        DetailsList0c3c5c1.innerHTML += "        ";
-        var DetailsList0c3c5c1c5 = document.createElement("div");
-        DetailsList0c3c5c1c5.setAttribute("class", "ms-DetailsHeader-cell is-sizer");
-        DetailsList0c3c5c1.appendChild(DetailsList0c3c5c1c5);
-        DetailsList0c3c5c1.innerHTML += "        ";
-        DetailsList0c3c5.appendChild(DetailsList0c3c5c1);
-        DetailsList0c3c5.innerHTML += "      ";
-        DetailsList0c3.appendChild(DetailsList0c3c5);
-        DetailsList0c3.innerHTML += "      ";
-        var DetailsList0c3c7 = document.createElement("div");
-        DetailsList0c3c7.setAttribute("class", "ms-DetailsHeader-cellSizeWrapper");
-        DetailsList0c3c7.innerHTML += "        ";
-        var DetailsList0c3c7c1 = document.createElement("div");
-        DetailsList0c3c7c1.setAttribute("class", "ms-DetailsHeader-cellWrapper");
-        DetailsList0c3c7c1.innerHTML += "          ";
-        var DetailsList0c3c7c1c1 = document.createElement("button");
-        DetailsList0c3c7c1c1.setAttribute("class", "ms-DetailsHeader-cell");
-        DetailsList0c3c7c1c1.setAttribute("style", "width: 200px");
-        DetailsList0c3c7c1c1.innerHTML += "            ";
-        var DetailsList0c3c7c1c1c1 = document.createElement("span");
-        DetailsList0c3c7c1c1c1.setAttribute("class", "ms-DetailsHeader-sortArrow ms-Icon--arrowDown2");
-        DetailsList0c3c7c1c1c1.innerHTML += "              ";
-        var DetailsList0c3c7c1c1c1c1 = document.createElement("i");
-        DetailsList0c3c7c1c1c1c1.setAttribute("class", "ms-DetailsHeader-filterChevron ms-Icon ms-Icon--chevronDown");
-        DetailsList0c3c7c1c1c1.appendChild(DetailsList0c3c7c1c1c1c1);
-        DetailsList0c3c7c1c1c1.innerHTML += "            ";
-        DetailsList0c3c7c1c1.appendChild(DetailsList0c3c7c1c1c1);
-        DetailsList0c3c7c1c1.innerHTML += "            ";
-        var DetailsList0c3c7c1c1c3 = document.createElement("span");
-        DetailsList0c3c7c1c1c3.setAttribute("class", "ms-DetailsHeader-cellText");
-        DetailsList0c3c7c1c1c3.innerHTML += "Modified by";
-        DetailsList0c3c7c1c1.appendChild(DetailsList0c3c7c1c1c3);
-        DetailsList0c3c7c1c1.innerHTML += "          ";
-        DetailsList0c3c7c1.appendChild(DetailsList0c3c7c1c1);
-        DetailsList0c3c7c1.innerHTML += "        ";
-        DetailsList0c3c7c1.innerHTML += "        ";
-        var DetailsList0c3c7c1c5 = document.createElement("div");
-        DetailsList0c3c7c1c5.setAttribute("class", "ms-DetailsHeader-cell is-sizer");
-        DetailsList0c3c7c1.appendChild(DetailsList0c3c7c1c5);
-        DetailsList0c3c7c1.innerHTML += "        ";
-        DetailsList0c3c7.appendChild(DetailsList0c3c7c1);
-        DetailsList0c3c7.innerHTML += "      ";
-        DetailsList0c3.appendChild(DetailsList0c3c7);
-        DetailsList0c3.innerHTML += "      ";
-        var DetailsList0c3c9 = document.createElement("div");
-        DetailsList0c3c9.setAttribute("class", "ms-DetailsHeader-cellSizeWrapper");
-        DetailsList0c3c9.innerHTML += "        ";
-        var DetailsList0c3c9c1 = document.createElement("div");
-        DetailsList0c3c9c1.setAttribute("class", "ms-DetailsHeader-cellWrapper");
-        DetailsList0c3c9c1.innerHTML += "          ";
-        var DetailsList0c3c9c1c1 = document.createElement("button");
-        DetailsList0c3c9c1c1.setAttribute("class", "ms-DetailsHeader-cell");
-        DetailsList0c3c9c1c1.setAttribute("style", "width: 200px");
-        DetailsList0c3c9c1c1.innerHTML += "            ";
-        var DetailsList0c3c9c1c1c1 = document.createElement("span");
-        DetailsList0c3c9c1c1c1.setAttribute("class", "ms-DetailsHeader-sortArrow ms-Icon--arrowDown2");
-        DetailsList0c3c9c1c1c1.innerHTML += "              ";
-        var DetailsList0c3c9c1c1c1c1 = document.createElement("i");
-        DetailsList0c3c9c1c1c1c1.setAttribute("class", "ms-DetailsHeader-filterChevron ms-Icon ms-Icon--chevronDown");
-        DetailsList0c3c9c1c1c1.appendChild(DetailsList0c3c9c1c1c1c1);
-        DetailsList0c3c9c1c1c1.innerHTML += "            ";
-        DetailsList0c3c9c1c1.appendChild(DetailsList0c3c9c1c1c1);
-        DetailsList0c3c9c1c1.innerHTML += "            ";
-        var DetailsList0c3c9c1c1c3 = document.createElement("span");
-        DetailsList0c3c9c1c1c3.setAttribute("class", "ms-DetailsHeader-cellText");
-        DetailsList0c3c9c1c1c3.innerHTML += "Sharing";
-        DetailsList0c3c9c1c1.appendChild(DetailsList0c3c9c1c1c3);
-        DetailsList0c3c9c1c1.innerHTML += "          ";
-        DetailsList0c3c9c1.appendChild(DetailsList0c3c9c1c1);
-        DetailsList0c3c9c1.innerHTML += "        ";
-        DetailsList0c3c9c1.innerHTML += "        ";
-        var DetailsList0c3c9c1c5 = document.createElement("div");
-        DetailsList0c3c9c1c5.setAttribute("class", "ms-DetailsHeader-cell is-sizer");
-        DetailsList0c3c9c1.appendChild(DetailsList0c3c9c1c5);
-        DetailsList0c3c9c1.innerHTML += "        ";
-        DetailsList0c3c9.appendChild(DetailsList0c3c9c1);
-        DetailsList0c3c9.innerHTML += "      ";
-        DetailsList0c3.appendChild(DetailsList0c3c9);
-        DetailsList0c3.innerHTML += "    ";
-        var DetailsList0c3c11 = document.createElement("div");
-        DetailsList0c3c11.setAttribute("class", "ms-DetailsHeader-sizerCover");
-        DetailsList0c3.appendChild(DetailsList0c3c11);
-        DetailsList0c3.innerHTML += "  ";
-        DetailsList0.appendChild(DetailsList0c3);
-        DetailsList0.innerHTML += "  ";
-        DetailsList0.innerHTML += "    ";
-        DetailsList0.innerHTML += "  ";
-        var DetailsList0c9 = document.createElement("div");
-        DetailsList0c9.setAttribute("class", "ms-DetailsList-list");
-        DetailsList0c9.innerHTML += "    ";
-        DetailsList0c9.innerHTML += "    ";
-        var DetailsList0c9c3 = document.createElement("div");
-        DetailsList0c9c3.setAttribute("class", "ms-DetailsRow ms-font-m is-selected");
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c1 = document.createElement("div");
-        DetailsList0c9c3c1.setAttribute("class", "ms-DetailsRow-focusBox");
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c1);
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c3 = document.createElement("button");
-        DetailsList0c9c3c3.setAttribute("class", "ms-DetailsRow-check");
-        DetailsList0c9c3c3.innerHTML += "        ";
-        var DetailsList0c9c3c3c1 = document.createElement("svg");
-        DetailsList0c9c3c3c1.setAttribute("class", "ms-Check");
-        DetailsList0c9c3c3c1.setAttribute("height", "20");
-        DetailsList0c9c3c3c1.setAttribute("width", "20");
-        DetailsList0c9c3c3c1.innerHTML += "          ";
-        var DetailsList0c9c3c3c1c1 = document.createElement("circle");
-        DetailsList0c9c3c3c1c1.setAttribute("class", "ms-Check-circle");
-        DetailsList0c9c3c3c1c1.setAttribute("cx", "10");
-        DetailsList0c9c3c3c1c1.setAttribute("cy", "10");
-        DetailsList0c9c3c3c1c1.setAttribute("r", "9");
-        DetailsList0c9c3c3c1c1.setAttribute("stroke-width", "1");
-        DetailsList0c9c3c3c1.appendChild(DetailsList0c9c3c3c1c1);
-        DetailsList0c9c3c3c1.innerHTML += "          ";
-        var DetailsList0c9c3c3c1c3 = document.createElement("polyline");
-        DetailsList0c9c3c3c1c3.setAttribute("class", "ms-Check-check");
-        DetailsList0c9c3c3c1c3.setAttribute("points", "6.3,10.3 9,13 13.3,7.5");
-        DetailsList0c9c3c3c1c3.setAttribute("stroke-width", "1.5");
-        DetailsList0c9c3c3c1c3.setAttribute("fill", "none");
-        DetailsList0c9c3c3c1.appendChild(DetailsList0c9c3c3c1c3);
-        DetailsList0c9c3c3c1.innerHTML += "        ";
-        DetailsList0c9c3c3.appendChild(DetailsList0c9c3c3c1);
-        DetailsList0c9c3c3.innerHTML += "      ";
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c3);
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c5 = document.createElement("div");
-        DetailsList0c9c3c5.setAttribute("class", "ms-DetailsRow-cell is-clipped");
-        DetailsList0c9c3c5.setAttribute("style", "width: 300px");
-        DetailsList0c9c3c5.innerHTML += "Commissioned Research";
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c5);
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c7 = document.createElement("div");
-        DetailsList0c9c3c7.setAttribute("class", "ms-DetailsRow-cell is-clipped ms-fontColor-neutralSecondary");
-        DetailsList0c9c3c7.setAttribute("style", "width: 200px");
-        DetailsList0c9c3c7.innerHTML += "Yesterday, 3:34pm";
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c7);
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c9 = document.createElement("div");
-        DetailsList0c9c3c9.setAttribute("class", "ms-DetailsRow-cell is-clipped ms-fontColor-neutralSecondary");
-        DetailsList0c9c3c9.setAttribute("style", "width: 200px");
-        DetailsList0c9c3c9.innerHTML += "Alton Lafferty";
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c9);
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c11 = document.createElement("div");
-        DetailsList0c9c3c11.setAttribute("class", "ms-DetailsRow-cell is-clipped ms-fontColor-neutralSecondary");
-        DetailsList0c9c3c11.setAttribute("style", "width: 200px");
-        var DetailsList0c9c3c11c0 = document.createElement("i");
-        DetailsList0c9c3c11c0.setAttribute("class", "ms-DetailsRow-cellIcon ms-Icon ms-Icon--People");
-        DetailsList0c9c3c11.appendChild(DetailsList0c9c3c11c0);
-        var DetailsList0c9c3c11c1 = document.createElement("span");
-        DetailsList0c9c3c11c1.setAttribute("class", "ms-DetailsRow-cellText");
-        DetailsList0c9c3c11c1.innerHTML += "Editor";
-        DetailsList0c9c3c11.appendChild(DetailsList0c9c3c11c1);
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c11);
-        DetailsList0c9c3.innerHTML += "      ";
-        var DetailsList0c9c3c13 = document.createElement("span");
-        DetailsList0c9c3c13.setAttribute("class", "ms-DetailsRow-cell ms-DetailsRow-cellMeasurer");
-        DetailsList0c9c3.appendChild(DetailsList0c9c3c13);
-        DetailsList0c9c3.innerHTML += "    ";
-        DetailsList0c9.appendChild(DetailsList0c9c3);
-        DetailsList0c9.innerHTML += "    ";
-        var DetailsList0c9c5 = document.createElement("div");
-        DetailsList0c9c5.setAttribute("class", "ms-DetailsRow ms-font-m");
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c1 = document.createElement("div");
-        DetailsList0c9c5c1.setAttribute("class", "ms-DetailsRow-focusBox");
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c1);
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c3 = document.createElement("button");
-        DetailsList0c9c5c3.setAttribute("class", "ms-DetailsRow-check");
-        DetailsList0c9c5c3.innerHTML += "        ";
-        var DetailsList0c9c5c3c1 = document.createElement("svg");
-        DetailsList0c9c5c3c1.setAttribute("class", "ms-Check");
-        DetailsList0c9c5c3c1.setAttribute("height", "20");
-        DetailsList0c9c5c3c1.setAttribute("width", "20");
-        DetailsList0c9c5c3c1.innerHTML += "          ";
-        var DetailsList0c9c5c3c1c1 = document.createElement("circle");
-        DetailsList0c9c5c3c1c1.setAttribute("class", "ms-Check-circle");
-        DetailsList0c9c5c3c1c1.setAttribute("cx", "10");
-        DetailsList0c9c5c3c1c1.setAttribute("cy", "10");
-        DetailsList0c9c5c3c1c1.setAttribute("r", "9");
-        DetailsList0c9c5c3c1c1.setAttribute("stroke-width", "1");
-        DetailsList0c9c5c3c1.appendChild(DetailsList0c9c5c3c1c1);
-        DetailsList0c9c5c3c1.innerHTML += "          ";
-        var DetailsList0c9c5c3c1c3 = document.createElement("polyline");
-        DetailsList0c9c5c3c1c3.setAttribute("class", "ms-Check-check");
-        DetailsList0c9c5c3c1c3.setAttribute("points", "6.3,10.3 9,13 13.3,7.5");
-        DetailsList0c9c5c3c1c3.setAttribute("stroke-width", "1.5");
-        DetailsList0c9c5c3c1c3.setAttribute("fill", "none");
-        DetailsList0c9c5c3c1.appendChild(DetailsList0c9c5c3c1c3);
-        DetailsList0c9c5c3c1.innerHTML += "        ";
-        DetailsList0c9c5c3.appendChild(DetailsList0c9c5c3c1);
-        DetailsList0c9c5c3.innerHTML += "      ";
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c3);
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c5 = document.createElement("div");
-        DetailsList0c9c5c5.setAttribute("class", "ms-DetailsRow-cell is-clipped");
-        DetailsList0c9c5c5.setAttribute("style", "width: 300px");
-        DetailsList0c9c5c5.innerHTML += "Commissioned Research";
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c5);
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c7 = document.createElement("div");
-        DetailsList0c9c5c7.setAttribute("class", "ms-DetailsRow-cell is-clipped ms-fontColor-neutralSecondary");
-        DetailsList0c9c5c7.setAttribute("style", "width: 200px");
-        DetailsList0c9c5c7.innerHTML += "Yesterday, 3:34pm";
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c7);
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c9 = document.createElement("div");
-        DetailsList0c9c5c9.setAttribute("class", "ms-DetailsRow-cell is-clipped ms-fontColor-neutralSecondary");
-        DetailsList0c9c5c9.setAttribute("style", "width: 200px");
-        DetailsList0c9c5c9.innerHTML += "Alex Darrow";
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c9);
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c11 = document.createElement("div");
-        DetailsList0c9c5c11.setAttribute("class", "ms-DetailsRow-cell is-clipped ms-fontColor-neutralSecondary");
-        DetailsList0c9c5c11.setAttribute("style", "width: 200px");
-        var DetailsList0c9c5c11c0 = document.createElement("i");
-        DetailsList0c9c5c11c0.setAttribute("class", "ms-DetailsRow-cellIcon ms-Icon ms-Icon--People");
-        DetailsList0c9c5c11.appendChild(DetailsList0c9c5c11c0);
-        var DetailsList0c9c5c11c1 = document.createElement("span");
-        DetailsList0c9c5c11c1.setAttribute("class", "ms-DetailsRow-cellText");
-        DetailsList0c9c5c11c1.innerHTML += "Editor";
-        DetailsList0c9c5c11.appendChild(DetailsList0c9c5c11c1);
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c11);
-        DetailsList0c9c5.innerHTML += "      ";
-        var DetailsList0c9c5c13 = document.createElement("span");
-        DetailsList0c9c5c13.setAttribute("class", "ms-DetailsRow-cell ms-DetailsRow-cellMeasurer");
-        DetailsList0c9c5.appendChild(DetailsList0c9c5c13);
-        DetailsList0c9c5.innerHTML += "    ";
-        DetailsList0c9.appendChild(DetailsList0c9c5);
-        DetailsList0c9.innerHTML += "    ";
-        DetailsList0c9.innerHTML += "  ";
-        DetailsList0.appendChild(DetailsList0c9);
-        DetailsList0.innerHTML += "";
-        return DetailsList0;
-    };
-    FabricTemplateLibrary.prototype.Dialog = function () {
-        var Dialog0 = document.createElement("div");
-        Dialog0.setAttribute("class", "ms-Dialog ");
-        Dialog0.innerHTML += "    ";
-        var Dialog0c1 = document.createElement("div");
-        Dialog0c1.setAttribute("class", "ms-Dialog-title");
-        Dialog0.appendChild(Dialog0c1);
-        Dialog0.innerHTML += "    ";
-        var Dialog0c3 = document.createElement("div");
-        Dialog0c3.setAttribute("class", "ms-Dialog-content");
-        Dialog0c3.innerHTML += "    ";
-        Dialog0.appendChild(Dialog0c3);
-        Dialog0.innerHTML += "";
-        return Dialog0;
-    };
-    FabricTemplateLibrary.prototype.DialogHost = function () {
-        var DialogHost0 = document.createElement("div");
-        DialogHost0.setAttribute("class", "ms-DialogHost      ");
-        DialogHost0.innerHTML += "  ";
-        var DialogHost0c1 = document.createElement("div");
-        DialogHost0c1.setAttribute("class", "ms-DialogHost-main");
-        DialogHost0c1.innerHTML += "        ";
-        DialogHost0.appendChild(DialogHost0c1);
-        DialogHost0.innerHTML += "";
-        return DialogHost0;
-    };
-    FabricTemplateLibrary.prototype.Dropdown = function () {
-        var Dropdown0 = document.createElement("div");
-        Dropdown0.setAttribute("class", "ms-Dropdown  ");
-        Dropdown0.setAttribute("tabindex", "0");
-        Dropdown0.innerHTML += "  ";
-        var Dropdown0c1 = document.createElement("label");
-        Dropdown0c1.setAttribute("class", "ms-Label");
-        Dropdown0.appendChild(Dropdown0c1);
-        Dropdown0.innerHTML += "  ";
-        var Dropdown0c3 = document.createElement("i");
-        Dropdown0c3.setAttribute("class", "ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown");
-        Dropdown0.appendChild(Dropdown0c3);
-        Dropdown0.innerHTML += "  ";
-        var Dropdown0c5 = document.createElement("select");
-        Dropdown0c5.setAttribute("class", "ms-Dropdown-select");
-        Dropdown0c5.innerHTML += "  ";
-        Dropdown0.appendChild(Dropdown0c5);
-        Dropdown0.innerHTML += "";
-        return Dropdown0;
-    };
-    FabricTemplateLibrary.prototype.FacePile = function () {
-        var FacePile0 = document.createElement("div");
-        FacePile0.setAttribute("class", "ms-FacePile");
-        FacePile0.innerHTML += "  ";
-        var FacePile0c1 = document.createElement("button");
-        FacePile0c1.setAttribute("class", "ms-FacePile-addButton ms-FacePile-addButton--addPerson");
-        FacePile0c1.innerHTML += "    ";
-        var FacePile0c1c1 = document.createElement("i");
-        FacePile0c1c1.setAttribute("class", "ms-FacePile-addPersonIcon ms-Icon ms-Icon--AddFriend");
-        FacePile0c1.appendChild(FacePile0c1c1);
-        FacePile0c1.innerHTML += "  ";
-        FacePile0.appendChild(FacePile0c1);
-        FacePile0.innerHTML += "      ";
-        var FacePile0c3 = document.createElement("button");
-        FacePile0c3.setAttribute("class", "ms-FacePile-addButton ms-FacePile-addButton--overflow");
-        FacePile0c3.innerHTML += "    ";
-        var FacePile0c3c1 = document.createElement("span");
-        FacePile0c3c1.setAttribute("class", "ms-FacePile-overflowText");
-        FacePile0c3c1.innerHTML += "+3";
-        FacePile0c3.appendChild(FacePile0c3c1);
-        FacePile0c3.innerHTML += "  ";
-        FacePile0.appendChild(FacePile0c3);
-        FacePile0.innerHTML += "";
-        return FacePile0;
-    };
-    FabricTemplateLibrary.prototype.Label = function () {
-        var Label0 = document.createElement("label");
-        Label0.setAttribute("class", "ms-Label  ");
-        return Label0;
-    };
-    FabricTemplateLibrary.prototype.Link = function () {
-        var Link0 = document.createElement("a");
-        Link0.setAttribute("class", "ms-Link  ");
-        return Link0;
-    };
-    FabricTemplateLibrary.prototype.List = function () {
-        var List0 = document.createElement("ul");
-        List0.setAttribute("class", "ms-List ");
-        List0.innerHTML += "";
-        return List0;
-    };
-    FabricTemplateLibrary.prototype.ListItem = function () {
-        var ListItem0 = document.createElement("li");
-        ListItem0.setAttribute("class", "ms-ListItem  ");
-        ListItem0.setAttribute("tabindex", "0");
-        ListItem0.innerHTML += "              ";
-        var ListItem0c1 = document.createElement("div");
-        ListItem0c1.setAttribute("class", "ms-ListItem-selectionTarget");
-        ListItem0.appendChild(ListItem0c1);
-        ListItem0.innerHTML += "  ";
-        var ListItem0c3 = document.createElement("div");
-        ListItem0c3.setAttribute("class", "ms-ListItem-actions");
-        ListItem0c3.innerHTML += "        ";
-        var ListItem0c3c1 = document.createElement("div");
-        ListItem0c3c1.setAttribute("class", "ms-ListItem-action");
-        var ListItem0c3c1c0 = document.createElement("i");
-        ListItem0c3c1c0.setAttribute("class", "ms-Icon ms-Icon--Mail");
-        ListItem0c3c1.appendChild(ListItem0c3c1c0);
-        ListItem0c3.appendChild(ListItem0c3c1);
-        ListItem0c3.innerHTML += "    ";
-        var ListItem0c3c3 = document.createElement("div");
-        ListItem0c3c3.setAttribute("class", "ms-ListItem-action");
-        var ListItem0c3c3c0 = document.createElement("i");
-        ListItem0c3c3c0.setAttribute("class", "ms-Icon ms-Icon--Delete");
-        ListItem0c3c3.appendChild(ListItem0c3c3c0);
-        ListItem0c3.appendChild(ListItem0c3c3);
-        ListItem0c3.innerHTML += "    ";
-        var ListItem0c3c5 = document.createElement("div");
-        ListItem0c3c5.setAttribute("class", "ms-ListItem-action");
-        var ListItem0c3c5c0 = document.createElement("i");
-        ListItem0c3c5c0.setAttribute("class", "ms-Icon ms-Icon--Flag");
-        ListItem0c3c5.appendChild(ListItem0c3c5c0);
-        ListItem0c3.appendChild(ListItem0c3c5);
-        ListItem0c3.innerHTML += "    ";
-        var ListItem0c3c7 = document.createElement("div");
-        ListItem0c3c7.setAttribute("class", "ms-ListItem-action");
-        var ListItem0c3c7c0 = document.createElement("i");
-        ListItem0c3c7c0.setAttribute("class", "ms-Icon ms-Icon--Pinned");
-        ListItem0c3c7.appendChild(ListItem0c3c7c0);
-        ListItem0c3.appendChild(ListItem0c3c7);
-        ListItem0c3.innerHTML += "  ";
-        ListItem0.appendChild(ListItem0c3);
-        ListItem0.innerHTML += "";
-        return ListItem0;
-    };
-    FabricTemplateLibrary.prototype.MessageBanner = function () {
-        var MessageBanner0 = document.createElement("div");
-        MessageBanner0.setAttribute("class", "ms-MessageBanner");
-        MessageBanner0.innerHTML += "  ";
-        var MessageBanner0c1 = document.createElement("div");
-        MessageBanner0c1.setAttribute("class", "ms-MessageBanner-content");
-        MessageBanner0c1.innerHTML += "    ";
-        var MessageBanner0c1c1 = document.createElement("div");
-        MessageBanner0c1c1.setAttribute("class", "ms-MessageBanner-text");
-        MessageBanner0c1c1.innerHTML += "      ";
-        var MessageBanner0c1c1c1 = document.createElement("div");
-        MessageBanner0c1c1c1.setAttribute("class", "ms-MessageBanner-clipper");
-        MessageBanner0c1c1c1.innerHTML += "        You&#x27;ve reached your total storage on OneDrive. Please upgrade your storage plan if you need more storage.      ";
-        MessageBanner0c1c1.appendChild(MessageBanner0c1c1c1);
-        MessageBanner0c1c1.innerHTML += "    ";
-        MessageBanner0c1.appendChild(MessageBanner0c1c1);
-        MessageBanner0c1.innerHTML += "    ";
-        var MessageBanner0c1c3 = document.createElement("button");
-        MessageBanner0c1c3.setAttribute("class", "ms-MessageBanner-expand");
-        MessageBanner0c1c3.innerHTML += "      ";
-        var MessageBanner0c1c3c1 = document.createElement("i");
-        MessageBanner0c1c3c1.setAttribute("class", "ms-Icon ms-Icon--ChevronDown");
-        MessageBanner0c1c3.appendChild(MessageBanner0c1c3c1);
-        MessageBanner0c1c3.innerHTML += "    ";
-        MessageBanner0c1.appendChild(MessageBanner0c1c3);
-        MessageBanner0c1.innerHTML += "    ";
-        var MessageBanner0c1c5 = document.createElement("div");
-        MessageBanner0c1c5.setAttribute("class", "ms-MessageBanner-action");
-        MessageBanner0c1c5.innerHTML += "      ";
-        MessageBanner0c1c5.innerHTML += "";
-        var MessageBanner0c1c5c3 = document.createElement("button");
-        MessageBanner0c1c5c3.setAttribute("class", "ms-Button   ms-Button--primary  ");
-        MessageBanner0c1c5c3.innerHTML += "  ";
-        var MessageBanner0c1c5c3c1 = document.createElement("span");
-        MessageBanner0c1c5c3c1.setAttribute("class", "ms-Button-label");
-        MessageBanner0c1c5c3c1.innerHTML += "Get More Storage";
-        MessageBanner0c1c5c3.appendChild(MessageBanner0c1c5c3c1);
-        MessageBanner0c1c5c3.innerHTML += "";
-        MessageBanner0c1c5.appendChild(MessageBanner0c1c5c3);
-        MessageBanner0c1c5.innerHTML += "    ";
-        MessageBanner0c1.appendChild(MessageBanner0c1c5);
-        MessageBanner0c1.innerHTML += "  ";
-        MessageBanner0.appendChild(MessageBanner0c1);
-        MessageBanner0.innerHTML += "  ";
-        var MessageBanner0c3 = document.createElement("button");
-        MessageBanner0c3.setAttribute("class", "ms-MessageBanner-close");
-        MessageBanner0c3.innerHTML += "    ";
-        var MessageBanner0c3c1 = document.createElement("i");
-        MessageBanner0c3c1.setAttribute("class", "ms-Icon ms-Icon--Clear");
-        MessageBanner0c3.appendChild(MessageBanner0c3c1);
-        MessageBanner0c3.innerHTML += "  ";
-        MessageBanner0.appendChild(MessageBanner0c3);
-        MessageBanner0.innerHTML += "";
-        return MessageBanner0;
-    };
-    FabricTemplateLibrary.prototype.MessageBar = function () {
-        var MessageBar0 = document.createElement("div");
-        MessageBar0.setAttribute("class", "ms-MessageBar ");
-        MessageBar0.innerHTML += "  ";
-        var MessageBar0c1 = document.createElement("div");
-        MessageBar0c1.setAttribute("class", "ms-MessageBar-content");
-        MessageBar0c1.innerHTML += "    ";
-        var MessageBar0c1c1 = document.createElement("div");
-        MessageBar0c1c1.setAttribute("class", "ms-MessageBar-icon");
-        MessageBar0c1c1.innerHTML += "      ";
-        var MessageBar0c1c1c1 = document.createElement("i");
-        MessageBar0c1c1c1.setAttribute("class", "ms-Icon ");
-        MessageBar0c1c1.appendChild(MessageBar0c1c1c1);
-        MessageBar0c1c1.innerHTML += "    ";
-        MessageBar0c1.appendChild(MessageBar0c1c1);
-        MessageBar0c1.innerHTML += "    ";
-        var MessageBar0c1c3 = document.createElement("div");
-        MessageBar0c1c3.setAttribute("class", "ms-MessageBar-text");
-        MessageBar0c1c3.innerHTML += "      Lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.";
-        var MessageBar0c1c3c1 = document.createElement("br");
-        MessageBar0c1c3.appendChild(MessageBar0c1c3c1);
-        MessageBar0c1c3.innerHTML += "      ";
-        var MessageBar0c1c3c3 = document.createElement("a");
-        MessageBar0c1c3c3.setAttribute("href", "");
-        MessageBar0c1c3c3.setAttribute("class", "ms-Link");
-        MessageBar0c1c3c3.innerHTML += "Hyperlink string";
-        MessageBar0c1c3.appendChild(MessageBar0c1c3c3);
-        MessageBar0c1c3.innerHTML += "    ";
-        MessageBar0c1.appendChild(MessageBar0c1c3);
-        MessageBar0c1.innerHTML += "  ";
-        MessageBar0.appendChild(MessageBar0c1);
-        MessageBar0.innerHTML += "";
-        return MessageBar0;
-    };
-    FabricTemplateLibrary.prototype.OrgChart = function () {
-        var OrgChart0 = document.createElement("div");
-        OrgChart0.setAttribute("class", "ms-OrgChart ");
-        OrgChart0.innerHTML += "";
-        return OrgChart0;
-    };
-    FabricTemplateLibrary.prototype.Overlay = function () {
-        var Overlay0 = document.createElement("div");
-        Overlay0.setAttribute("class", "ms-Overlay ");
-        return Overlay0;
-    };
-    FabricTemplateLibrary.prototype.Panel = function () {
-        var Panel0 = document.createElement("div");
-        Panel0.setAttribute("class", "ms-Panel ");
-        Panel0.innerHTML += "    ";
-        var Panel0c1 = document.createElement("button");
-        Panel0c1.setAttribute("class", "ms-Panel-closeButton ms-PanelAction-close");
-        Panel0c1.innerHTML += "        ";
-        var Panel0c1c1 = document.createElement("i");
-        Panel0c1c1.setAttribute("class", "ms-Panel-closeIcon ms-Icon ms-Icon--Cancel");
-        Panel0c1.appendChild(Panel0c1c1);
-        Panel0c1.innerHTML += "    ";
-        Panel0.appendChild(Panel0c1);
-        Panel0.innerHTML += "    ";
-        var Panel0c3 = document.createElement("div");
-        Panel0c3.setAttribute("class", "ms-Panel-contentInner");
-        Panel0c3.innerHTML += "        ";
-        var Panel0c3c1 = document.createElement("p");
-        Panel0c3c1.setAttribute("class", "ms-Panel-headerText");
-        Panel0c3.appendChild(Panel0c3c1);
-        Panel0c3.innerHTML += "        ";
-        var Panel0c3c3 = document.createElement("div");
-        Panel0c3c3.setAttribute("class", "ms-Panel-content");
-        Panel0c3c3.innerHTML += "            ";
-        var Panel0c3c3c1 = document.createElement("span");
-        Panel0c3c3c1.setAttribute("class", "ms-font-m");
-        Panel0c3c3.appendChild(Panel0c3c3c1);
-        Panel0c3c3.innerHTML += "        ";
-        Panel0c3.appendChild(Panel0c3c3);
-        Panel0c3.innerHTML += "    ";
-        Panel0.appendChild(Panel0c3);
-        Panel0.innerHTML += "";
-        return Panel0;
-    };
-    FabricTemplateLibrary.prototype.PanelHost = function () {
-        var PanelHost0 = document.createElement("div");
-        PanelHost0.setAttribute("class", "ms-PanelHost");
-        PanelHost0.innerHTML += "  ";
-        PanelHost0.innerHTML += "    ";
-        var PanelHost0c3 = document.createElement("div");
-        PanelHost0c3.setAttribute("class", "ms-Overlay ");
-        PanelHost0.appendChild(PanelHost0c3);
-        PanelHost0.innerHTML += "";
-        return PanelHost0;
-    };
-    FabricTemplateLibrary.prototype.PeoplePicker = function () {
-        var PeoplePicker0 = document.createElement("div");
-        PeoplePicker0.setAttribute("class", "ms-PeoplePicker");
-        PeoplePicker0.innerHTML += "  ";
-        var PeoplePicker0c1 = document.createElement("div");
-        PeoplePicker0c1.setAttribute("class", "ms-PeoplePicker-searchBox");
-        PeoplePicker0c1.innerHTML += "    ";
-        PeoplePicker0c1.innerHTML += "        ";
-        var PeoplePicker0c1c3 = document.createElement("div");
-        PeoplePicker0c1c3.setAttribute("class", "ms-TextField  ");
-        PeoplePicker0c1c3.innerHTML += "                            ";
-        PeoplePicker0c1.appendChild(PeoplePicker0c1c3);
-        PeoplePicker0c1.innerHTML += "  ";
-        PeoplePicker0.appendChild(PeoplePicker0c1);
-        PeoplePicker0.innerHTML += "  ";
-        var PeoplePicker0c3 = document.createElement("div");
-        PeoplePicker0c3.setAttribute("class", "ms-PeoplePicker-results  ");
-        PeoplePicker0c3.innerHTML += "  ";
-        PeoplePicker0.appendChild(PeoplePicker0c3);
-        PeoplePicker0.innerHTML += "";
-        return PeoplePicker0;
-    };
-    FabricTemplateLibrary.prototype.Persona = function () {
-        var Persona0 = document.createElement("div");
-        Persona0.setAttribute("class", "ms-Persona");
-        Persona0.innerHTML += "  ";
-        var Persona0c1 = document.createElement("div");
-        Persona0c1.setAttribute("class", "ms-Persona-imageArea");
-        Persona0c1.innerHTML += "  ";
-        Persona0.appendChild(Persona0c1);
-        Persona0.innerHTML += "  ";
-        var Persona0c3 = document.createElement("div");
-        Persona0c3.setAttribute("class", "ms-Persona-presence");
-        Persona0c3.innerHTML += "  ";
-        Persona0.appendChild(Persona0c3);
-        Persona0.innerHTML += "  ";
-        var Persona0c5 = document.createElement("div");
-        Persona0c5.setAttribute("class", "ms-Persona-details");
-        Persona0c5.innerHTML += "  ";
-        Persona0.appendChild(Persona0c5);
-        Persona0.innerHTML += "";
-        return Persona0;
-    };
-    FabricTemplateLibrary.prototype.PersonaCard = function () {
-        var PersonaCard0 = document.createElement("div");
-        PersonaCard0.setAttribute("class", "ms-PersonaCard ");
-        PersonaCard0.innerHTML += "  ";
-        var PersonaCard0c1 = document.createElement("div");
-        PersonaCard0c1.setAttribute("class", "ms-PersonaCard-persona");
-        PersonaCard0c1.innerHTML += "    ";
-        PersonaCard0c1.innerHTML += "        ";
-        var PersonaCard0c1c3 = document.createElement("div");
-        PersonaCard0c1c3.setAttribute("class", "ms-Persona    ");
-        PersonaCard0c1c3.innerHTML += "      ";
-        var PersonaCard0c1c3c1 = document.createElement("div");
-        PersonaCard0c1c3c1.setAttribute("class", "ms-Persona-imageArea");
-        PersonaCard0c1c3c1.innerHTML += "      ";
-        PersonaCard0c1c3.appendChild(PersonaCard0c1c3c1);
-        PersonaCard0c1c3.innerHTML += "      ";
-        var PersonaCard0c1c3c3 = document.createElement("div");
-        PersonaCard0c1c3c3.setAttribute("class", "ms-Persona-presence");
-        PersonaCard0c1c3c3.innerHTML += "      ";
-        PersonaCard0c1c3.appendChild(PersonaCard0c1c3c3);
-        PersonaCard0c1c3.innerHTML += "      ";
-        var PersonaCard0c1c3c5 = document.createElement("div");
-        PersonaCard0c1c3c5.setAttribute("class", "ms-Persona-details");
-        PersonaCard0c1c3c5.innerHTML += "      ";
-        PersonaCard0c1c3.appendChild(PersonaCard0c1c3c5);
-        PersonaCard0c1c3.innerHTML += "    ";
-        PersonaCard0c1.appendChild(PersonaCard0c1c3);
-        PersonaCard0c1.innerHTML += "  ";
-        PersonaCard0.appendChild(PersonaCard0c1);
-        PersonaCard0.innerHTML += "  ";
-        var PersonaCard0c3 = document.createElement("ul");
-        PersonaCard0c3.setAttribute("class", "ms-PersonaCard-actions");
-        PersonaCard0c3.innerHTML += "    ";
-        var PersonaCard0c3c1 = document.createElement("li");
-        PersonaCard0c3c1.setAttribute("data-action-id", "chat");
-        PersonaCard0c3c1.setAttribute("class", "ms-PersonaCard-action");
-        PersonaCard0c3c1.setAttribute("tabindex", "1");
-        var PersonaCard0c3c1c0 = document.createElement("i");
-        PersonaCard0c3c1c0.setAttribute("class", "ms-Icon ms-Icon--Chat");
-        PersonaCard0c3c1.appendChild(PersonaCard0c3c1c0);
-        PersonaCard0c3.appendChild(PersonaCard0c3c1);
-        PersonaCard0c3.innerHTML += "    ";
-        var PersonaCard0c3c3 = document.createElement("li");
-        PersonaCard0c3c3.setAttribute("data-action-id", "phone");
-        PersonaCard0c3c3.setAttribute("class", "ms-PersonaCard-action is-active");
-        PersonaCard0c3c3.setAttribute("tabindex", "2");
-        var PersonaCard0c3c3c0 = document.createElement("i");
-        PersonaCard0c3c3c0.setAttribute("class", "ms-Icon ms-Icon--Phone");
-        PersonaCard0c3c3.appendChild(PersonaCard0c3c3c0);
-        PersonaCard0c3.appendChild(PersonaCard0c3c3);
-        PersonaCard0c3.innerHTML += "    ";
-        var PersonaCard0c3c5 = document.createElement("li");
-        PersonaCard0c3c5.setAttribute("data-action-id", "video");
-        PersonaCard0c3c5.setAttribute("class", "ms-PersonaCard-action");
-        PersonaCard0c3c5.setAttribute("tabindex", "3");
-        var PersonaCard0c3c5c0 = document.createElement("i");
-        PersonaCard0c3c5c0.setAttribute("class", "ms-Icon ms-Icon--Video");
-        PersonaCard0c3c5.appendChild(PersonaCard0c3c5c0);
-        PersonaCard0c3.appendChild(PersonaCard0c3c5);
-        PersonaCard0c3.innerHTML += "    ";
-        var PersonaCard0c3c7 = document.createElement("li");
-        PersonaCard0c3c7.setAttribute("data-action-id", "mail");
-        PersonaCard0c3c7.setAttribute("class", "ms-PersonaCard-action");
-        PersonaCard0c3c7.setAttribute("tabindex", "4");
-        var PersonaCard0c3c7c0 = document.createElement("i");
-        PersonaCard0c3c7c0.setAttribute("class", "ms-Icon ms-Icon--Mail");
-        PersonaCard0c3c7.appendChild(PersonaCard0c3c7c0);
-        PersonaCard0c3.appendChild(PersonaCard0c3c7);
-        PersonaCard0c3.innerHTML += "    ";
-        var PersonaCard0c3c9 = document.createElement("li");
-        PersonaCard0c3c9.setAttribute("class", "ms-PersonaCard-overflow");
-        PersonaCard0c3c9.setAttribute("alt", "View profile in Delve");
-        PersonaCard0c3c9.setAttribute("title", "View profile in Delve");
-        PersonaCard0c3c9.innerHTML += "View profile";
-        PersonaCard0c3.appendChild(PersonaCard0c3c9);
-        PersonaCard0c3.innerHTML += "    ";
-        var PersonaCard0c3c11 = document.createElement("li");
-        PersonaCard0c3c11.setAttribute("data-action-id", "org");
-        PersonaCard0c3c11.setAttribute("class", "ms-PersonaCard-action ms-PersonaCard-orgChart");
-        PersonaCard0c3c11.setAttribute("tabindex", "5");
-        var PersonaCard0c3c11c0 = document.createElement("i");
-        PersonaCard0c3c11c0.setAttribute("class", "ms-Icon ms-Icon--Org");
-        PersonaCard0c3c11.appendChild(PersonaCard0c3c11c0);
-        PersonaCard0c3.appendChild(PersonaCard0c3c11);
-        PersonaCard0c3.innerHTML += "  ";
-        PersonaCard0.appendChild(PersonaCard0c3);
-        PersonaCard0.innerHTML += "  ";
-        var PersonaCard0c5 = document.createElement("div");
-        PersonaCard0c5.setAttribute("class", "ms-PersonaCard-actionDetailBox");
-        PersonaCard0c5.innerHTML += "    ";
-        var PersonaCard0c5c1 = document.createElement("div");
-        PersonaCard0c5c1.setAttribute("data-detail-id", "mail");
-        PersonaCard0c5c1.setAttribute("class", "ms-PersonaCard-details");
-        PersonaCard0c5c1.innerHTML += "      ";
-        var PersonaCard0c5c1c1 = document.createElement("div");
-        PersonaCard0c5c1c1.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c1c1c0 = document.createElement("span");
-        PersonaCard0c5c1c1c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c1c1c0.innerHTML += "Personal:";
-        PersonaCard0c5c1c1.appendChild(PersonaCard0c5c1c1c0);
-        PersonaCard0c5c1c1.innerHTML += " ";
-        var PersonaCard0c5c1c1c2 = document.createElement("a");
-        PersonaCard0c5c1c1c2.setAttribute("class", "ms-Link");
-        PersonaCard0c5c1c1c2.setAttribute("href", "mailto:alton.lafferty@outlook.com");
-        PersonaCard0c5c1c1c2.innerHTML += "alton.lafferty@outlook.com";
-        PersonaCard0c5c1c1.appendChild(PersonaCard0c5c1c1c2);
-        PersonaCard0c5c1.appendChild(PersonaCard0c5c1c1);
-        PersonaCard0c5c1.innerHTML += "      ";
-        var PersonaCard0c5c1c3 = document.createElement("div");
-        PersonaCard0c5c1c3.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c1c3c0 = document.createElement("span");
-        PersonaCard0c5c1c3c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c1c3c0.innerHTML += "Work:";
-        PersonaCard0c5c1c3.appendChild(PersonaCard0c5c1c3c0);
-        PersonaCard0c5c1c3.innerHTML += " ";
-        var PersonaCard0c5c1c3c2 = document.createElement("a");
-        PersonaCard0c5c1c3c2.setAttribute("class", "ms-Link");
-        PersonaCard0c5c1c3c2.setAttribute("href", "mailto:alton.lafferty@outlook.com");
-        PersonaCard0c5c1c3c2.innerHTML += "altonlafferty@contoso.com";
-        PersonaCard0c5c1c3.appendChild(PersonaCard0c5c1c3c2);
-        PersonaCard0c5c1.appendChild(PersonaCard0c5c1c3);
-        PersonaCard0c5c1.innerHTML += "    ";
-        PersonaCard0c5.appendChild(PersonaCard0c5c1);
-        PersonaCard0c5.innerHTML += "    ";
-        var PersonaCard0c5c3 = document.createElement("div");
-        PersonaCard0c5c3.setAttribute("data-detail-id", "chat");
-        PersonaCard0c5c3.setAttribute("class", "ms-PersonaCard-details");
-        PersonaCard0c5c3.innerHTML += "      ";
-        var PersonaCard0c5c3c1 = document.createElement("div");
-        PersonaCard0c5c3c1.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c3c1c0 = document.createElement("span");
-        PersonaCard0c5c3c1c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c3c1c0.innerHTML += "Lync:";
-        PersonaCard0c5c3c1.appendChild(PersonaCard0c5c3c1c0);
-        PersonaCard0c5c3c1.innerHTML += " ";
-        var PersonaCard0c5c3c1c2 = document.createElement("a");
-        PersonaCard0c5c3c1c2.setAttribute("class", "ms-Link");
-        PersonaCard0c5c3c1c2.setAttribute("href", "#");
-        PersonaCard0c5c3c1c2.innerHTML += "Start Lync call";
-        PersonaCard0c5c3c1.appendChild(PersonaCard0c5c3c1c2);
-        PersonaCard0c5c3.appendChild(PersonaCard0c5c3c1);
-        PersonaCard0c5c3.innerHTML += "    ";
-        PersonaCard0c5.appendChild(PersonaCard0c5c3);
-        PersonaCard0c5.innerHTML += "    ";
-        var PersonaCard0c5c5 = document.createElement("div");
-        PersonaCard0c5c5.setAttribute("data-detail-id", "phone");
-        PersonaCard0c5c5.setAttribute("class", "ms-PersonaCard-details");
-        PersonaCard0c5c5.innerHTML += "      ";
-        var PersonaCard0c5c5c1 = document.createElement("div");
-        PersonaCard0c5c5c1.setAttribute("class", "ms-PersonaCard-detailExpander");
-        PersonaCard0c5c5.appendChild(PersonaCard0c5c5c1);
-        PersonaCard0c5c5.innerHTML += "      ";
-        var PersonaCard0c5c5c3 = document.createElement("div");
-        PersonaCard0c5c5c3.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c5c3c0 = document.createElement("span");
-        PersonaCard0c5c5c3c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c5c3c0.innerHTML += "Details";
-        PersonaCard0c5c5c3.appendChild(PersonaCard0c5c5c3c0);
-        PersonaCard0c5c5.appendChild(PersonaCard0c5c5c3);
-        PersonaCard0c5c5.innerHTML += "      ";
-        var PersonaCard0c5c5c5 = document.createElement("div");
-        PersonaCard0c5c5c5.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c5c5c0 = document.createElement("span");
-        PersonaCard0c5c5c5c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c5c5c0.innerHTML += "Personal:";
-        PersonaCard0c5c5c5.appendChild(PersonaCard0c5c5c5c0);
-        PersonaCard0c5c5c5.innerHTML += " 555.206.2443";
-        PersonaCard0c5c5.appendChild(PersonaCard0c5c5c5);
-        PersonaCard0c5c5.innerHTML += "      ";
-        var PersonaCard0c5c5c7 = document.createElement("div");
-        PersonaCard0c5c5c7.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c5c7c0 = document.createElement("span");
-        PersonaCard0c5c5c7c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c5c7c0.innerHTML += "Work:";
-        PersonaCard0c5c5c7.appendChild(PersonaCard0c5c5c7c0);
-        PersonaCard0c5c5c7.innerHTML += " 555.929.8240";
-        PersonaCard0c5c5.appendChild(PersonaCard0c5c5c7);
-        PersonaCard0c5c5.innerHTML += "    ";
-        PersonaCard0c5.appendChild(PersonaCard0c5c5);
-        PersonaCard0c5.innerHTML += "    ";
-        var PersonaCard0c5c7 = document.createElement("div");
-        PersonaCard0c5c7.setAttribute("data-detail-id", "video");
-        PersonaCard0c5c7.setAttribute("class", "ms-PersonaCard-details");
-        PersonaCard0c5c7.innerHTML += "      ";
-        var PersonaCard0c5c7c1 = document.createElement("div");
-        PersonaCard0c5c7c1.setAttribute("class", "ms-PersonaCard-detailLine");
-        var PersonaCard0c5c7c1c0 = document.createElement("span");
-        PersonaCard0c5c7c1c0.setAttribute("class", "ms-PersonaCard-detailLabel");
-        PersonaCard0c5c7c1c0.innerHTML += "Skype:";
-        PersonaCard0c5c7c1.appendChild(PersonaCard0c5c7c1c0);
-        PersonaCard0c5c7c1.innerHTML += " ";
-        var PersonaCard0c5c7c1c2 = document.createElement("a");
-        PersonaCard0c5c7c1c2.setAttribute("class", "ms-Link");
-        PersonaCard0c5c7c1c2.setAttribute("href", "#");
-        PersonaCard0c5c7c1c2.innerHTML += "Start Skype call";
-        PersonaCard0c5c7c1.appendChild(PersonaCard0c5c7c1c2);
-        PersonaCard0c5c7.appendChild(PersonaCard0c5c7c1);
-        PersonaCard0c5c7.innerHTML += "    ";
-        PersonaCard0c5.appendChild(PersonaCard0c5c7);
-        PersonaCard0c5.innerHTML += "      ";
-        PersonaCard0c5.innerHTML += "    ";
-        var PersonaCard0c5c11 = document.createElement("div");
-        PersonaCard0c5c11.setAttribute("data-detail-id", "org");
-        PersonaCard0c5c11.setAttribute("class", "ms-PersonaCard-details");
-        PersonaCard0c5c11.innerHTML += "      ";
-        PersonaCard0c5c11.innerHTML += "            ";
-        var PersonaCard0c5c11c3 = document.createElement("div");
-        PersonaCard0c5c11c3.setAttribute("class", "ms-OrgChart ");
-        PersonaCard0c5c11c3.innerHTML += "      ";
-        PersonaCard0c5c11.appendChild(PersonaCard0c5c11c3);
-        PersonaCard0c5c11.innerHTML += "    ";
-        PersonaCard0c5.appendChild(PersonaCard0c5c11);
-        PersonaCard0c5.innerHTML += "  ";
-        PersonaCard0.appendChild(PersonaCard0c5);
-        PersonaCard0.innerHTML += "";
-        return PersonaCard0;
-    };
-    FabricTemplateLibrary.prototype.Pivot = function () {
-        var Pivot0 = document.createElement("div");
-        Pivot0.setAttribute("class", "ms-Pivot ");
-        Pivot0.innerHTML += "  ";
-        var Pivot0c1 = document.createElement("ul");
-        Pivot0c1.setAttribute("class", "ms-Pivot-links");
-        Pivot0c1.innerHTML += "  ";
-        Pivot0.appendChild(Pivot0c1);
-        Pivot0.innerHTML += "";
-        return Pivot0;
-    };
-    FabricTemplateLibrary.prototype.ProgressIndicator = function () {
-        var ProgressIndicator0 = document.createElement("div");
-        ProgressIndicator0.setAttribute("class", "ms-ProgressIndicator");
-        ProgressIndicator0.innerHTML += "  ";
-        var ProgressIndicator0c1 = document.createElement("div");
-        ProgressIndicator0c1.setAttribute("class", "ms-ProgressIndicator-itemName");
-        ProgressIndicator0.appendChild(ProgressIndicator0c1);
-        ProgressIndicator0.innerHTML += "  ";
-        var ProgressIndicator0c3 = document.createElement("div");
-        ProgressIndicator0c3.setAttribute("class", "ms-ProgressIndicator-itemProgress");
-        ProgressIndicator0c3.innerHTML += "    ";
-        var ProgressIndicator0c3c1 = document.createElement("div");
-        ProgressIndicator0c3c1.setAttribute("class", "ms-ProgressIndicator-progressTrack");
-        ProgressIndicator0c3.appendChild(ProgressIndicator0c3c1);
-        ProgressIndicator0c3.innerHTML += "    ";
-        var ProgressIndicator0c3c3 = document.createElement("div");
-        ProgressIndicator0c3c3.setAttribute("class", "ms-ProgressIndicator-progressBar");
-        ProgressIndicator0c3.appendChild(ProgressIndicator0c3c3);
-        ProgressIndicator0c3.innerHTML += "  ";
-        ProgressIndicator0.appendChild(ProgressIndicator0c3);
-        ProgressIndicator0.innerHTML += "  ";
-        var ProgressIndicator0c5 = document.createElement("div");
-        ProgressIndicator0c5.setAttribute("class", "ms-ProgressIndicator-itemDescription");
-        ProgressIndicator0.appendChild(ProgressIndicator0c5);
-        ProgressIndicator0.innerHTML += "";
-        return ProgressIndicator0;
-    };
-    FabricTemplateLibrary.prototype.RadioButton = function () {
-        var RadioButton0 = document.createElement("div");
-        RadioButton0.setAttribute("class", "ms-RadioButton");
-        RadioButton0.innerHTML += "     ";
-        var RadioButton0c1 = document.createElement("input");
-        RadioButton0c1.setAttribute("tabindex", "-1");
-        RadioButton0c1.setAttribute("type", "radio");
-        RadioButton0c1.setAttribute("class", "ms-RadioButton-input");
-        RadioButton0.appendChild(RadioButton0c1);
-        RadioButton0.innerHTML += "    ";
-        var RadioButton0c3 = document.createElement("label");
-        RadioButton0c3.setAttribute("role", "");
-        RadioButton0c3.setAttribute("class", "ms-RadioButton-field ");
-        RadioButton0c3.setAttribute("tabindex", "0");
-        RadioButton0c3.setAttribute("aria-checked", "");
-        RadioButton0c3.setAttribute("name", "");
-        RadioButton0c3.innerHTML += "        ";
-        var RadioButton0c3c1 = document.createElement("span");
-        RadioButton0c3c1.setAttribute("class", "ms-Label");
-        RadioButton0c3.appendChild(RadioButton0c3c1);
-        RadioButton0c3.innerHTML += "    ";
-        RadioButton0.appendChild(RadioButton0c3);
-        RadioButton0.innerHTML += "";
-        return RadioButton0;
-    };
-    FabricTemplateLibrary.prototype.SearchBox = function () {
-        var SearchBox0 = document.createElement("div");
-        SearchBox0.setAttribute("class", "ms-SearchBox  ");
-        SearchBox0.innerHTML += "  ";
-        var SearchBox0c1 = document.createElement("input");
-        SearchBox0c1.setAttribute("class", "ms-SearchBox-field");
-        SearchBox0c1.setAttribute("type", "text");
-        SearchBox0c1.setAttribute("value", "");
-        SearchBox0.appendChild(SearchBox0c1);
-        SearchBox0.innerHTML += "  ";
-        var SearchBox0c3 = document.createElement("label");
-        SearchBox0c3.setAttribute("class", "ms-SearchBox-label");
-        SearchBox0c3.innerHTML += "    ";
-        var SearchBox0c3c1 = document.createElement("i");
-        SearchBox0c3c1.setAttribute("class", "ms-SearchBox-icon ms-Icon ms-Icon--search");
-        SearchBox0c3.appendChild(SearchBox0c3c1);
-        SearchBox0c3.innerHTML += "    ";
-        var SearchBox0c3c3 = document.createElement("span");
-        SearchBox0c3c3.setAttribute("class", "ms-SearchBox-text");
-        SearchBox0c3c3.innerHTML += "Search";
-        SearchBox0c3.appendChild(SearchBox0c3c3);
-        SearchBox0c3.innerHTML += "  ";
-        SearchBox0.appendChild(SearchBox0c3);
-        SearchBox0.innerHTML += "  ";
-        SearchBox0.innerHTML += "";
-        var SearchBox0c7 = document.createElement("div");
-        SearchBox0c7.setAttribute("class", "ms-CommandButton ms-SearchBox-close ms-CommandButton--noLabel  ");
-        SearchBox0c7.innerHTML += "  ";
-        var SearchBox0c7c1 = document.createElement("button");
-        SearchBox0c7c1.setAttribute("class", "ms-CommandButton-button");
-        SearchBox0c7c1.innerHTML += "      ";
-        var SearchBox0c7c1c1 = document.createElement("span");
-        SearchBox0c7c1c1.setAttribute("class", "ms-CommandButton-icon ");
-        var SearchBox0c7c1c1c0 = document.createElement("i");
-        SearchBox0c7c1c1c0.setAttribute("class", "ms-Icon ms-Icon--x");
-        SearchBox0c7c1c1.appendChild(SearchBox0c7c1c1c0);
-        SearchBox0c7c1.appendChild(SearchBox0c7c1c1);
-        var SearchBox0c7c1c2 = document.createElement("span");
-        SearchBox0c7c1c2.setAttribute("class", "ms-CommandButton-label");
-        SearchBox0c7c1.appendChild(SearchBox0c7c1c2);
-        SearchBox0c7c1.innerHTML += "  ";
-        SearchBox0c7.appendChild(SearchBox0c7c1);
-        SearchBox0c7.innerHTML += "";
-        SearchBox0.appendChild(SearchBox0c7);
-        SearchBox0.innerHTML += "    ";
-        SearchBox0.innerHTML += "";
-        var SearchBox0c11 = document.createElement("div");
-        SearchBox0c11.setAttribute("class", "ms-CommandButton ms-SearchBox-filter ms-CommandButton--noLabel  ");
-        SearchBox0c11.innerHTML += "  ";
-        var SearchBox0c11c1 = document.createElement("button");
-        SearchBox0c11c1.setAttribute("class", "ms-CommandButton-button");
-        SearchBox0c11c1.innerHTML += "      ";
-        var SearchBox0c11c1c1 = document.createElement("span");
-        SearchBox0c11c1c1.setAttribute("class", "ms-CommandButton-icon ");
-        var SearchBox0c11c1c1c0 = document.createElement("i");
-        SearchBox0c11c1c1c0.setAttribute("class", "ms-Icon ms-Icon--Filter");
-        SearchBox0c11c1c1.appendChild(SearchBox0c11c1c1c0);
-        SearchBox0c11c1.appendChild(SearchBox0c11c1c1);
-        var SearchBox0c11c1c2 = document.createElement("span");
-        SearchBox0c11c1c2.setAttribute("class", "ms-CommandButton-label");
-        SearchBox0c11c1.appendChild(SearchBox0c11c1c2);
-        SearchBox0c11c1.innerHTML += "  ";
-        SearchBox0c11.appendChild(SearchBox0c11c1);
-        SearchBox0c11.innerHTML += "";
-        SearchBox0.appendChild(SearchBox0c11);
-        SearchBox0.innerHTML += "";
-        return SearchBox0;
-    };
-    FabricTemplateLibrary.prototype.Spinner = function () {
-        var Spinner0 = document.createElement("div");
-        Spinner0.setAttribute("class", "ms-Spinner ");
-        Spinner0.innerHTML += "";
-        return Spinner0;
-    };
-    FabricTemplateLibrary.prototype.Table = function () {
-        var Table0 = document.createElement("table");
-        Table0.setAttribute("class", "ms-Table ");
-        Table0.innerHTML += "  ";
-        var Table0c1 = document.createElement("thead");
-        Table0c1.innerHTML += "    ";
-        var Table0c1c1 = document.createElement("tr");
-        Table0c1c1.innerHTML += "    ";
-        Table0c1.appendChild(Table0c1c1);
-        Table0c1.innerHTML += "  ";
-        Table0.appendChild(Table0c1);
-        Table0.innerHTML += "  ";
-        var Table0c3 = document.createElement("tbody");
-        Table0c3.innerHTML += "  ";
-        Table0.appendChild(Table0c3);
-        Table0.innerHTML += "";
-        return Table0;
-    };
-    FabricTemplateLibrary.prototype.TextField = function () {
-        var TextField0 = document.createElement("div");
-        TextField0.setAttribute("class", "ms-TextField  ");
-        TextField0.innerHTML += "        ";
-        return TextField0;
-    };
-    FabricTemplateLibrary.prototype.Toggle = function () {
-        var Toggle0 = document.createElement("div");
-        Toggle0.setAttribute("class", "ms-Toggle  ");
-        Toggle0.innerHTML += "  ";
-        var Toggle0c1 = document.createElement("span");
-        Toggle0c1.setAttribute("class", "ms-Toggle-description");
-        Toggle0.appendChild(Toggle0c1);
-        Toggle0.innerHTML += "  ";
-        var Toggle0c3 = document.createElement("input");
-        Toggle0c3.setAttribute("type", "checkbox");
-        Toggle0c3.setAttribute("id", "");
-        Toggle0c3.setAttribute("class", "ms-Toggle-input");
-        Toggle0.appendChild(Toggle0c3);
-        Toggle0.innerHTML += "  ";
-        var Toggle0c5 = document.createElement("label");
-        Toggle0c5.setAttribute("for", "");
-        Toggle0c5.setAttribute("class", "ms-Toggle-field");
-        Toggle0c5.setAttribute("tabindex", "0");
-        Toggle0c5.innerHTML += "    ";
-        var Toggle0c5c1 = document.createElement("span");
-        Toggle0c5c1.setAttribute("class", "ms-Label ms-Label--off");
-        Toggle0c5.appendChild(Toggle0c5c1);
-        Toggle0c5.innerHTML += "    ";
-        var Toggle0c5c3 = document.createElement("span");
-        Toggle0c5c3.setAttribute("class", "ms-Label ms-Label--on");
-        Toggle0c5.appendChild(Toggle0c5c3);
-        Toggle0c5.innerHTML += "  ";
-        Toggle0.appendChild(Toggle0c5);
-        Toggle0.innerHTML += "";
-        return Toggle0;
-    };
-    return FabricTemplateLibrary;
-}());
-
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
-/// <reference path="../../../dist/js/fabric.templates.ts"/>
 /**
  * ContextualHost
  *
@@ -2044,8 +626,8 @@ var fabric;
      */
     var CONTEXT_STATE_CLASS = "is-open";
     var MODAL_STATE_POSITIONED = "is-positioned";
-    var CONTEXT_HOST_MAIN_CLASS = ".ms-ContextualHost-main";
-    var CONTEXT_HOST_BEAK_CLASS = ".ms-ContextualHost-beak";
+    var CONTEXT_HOST_MAIN_CLASS = "ms-ContextualHost-main";
+    var CONTEXT_HOST_BEAK_CLASS = "ms-ContextualHost-beak";
     var ARROW_LEFT_CLASS = "ms-ContextualHost--arrowLeft";
     var ARROW_TOP_CLASS = "ms-ContextualHost--arrowTop";
     var ARROW_BOTTOM_CLASS = "ms-ContextualHost--arrowBottom";
@@ -2056,17 +638,17 @@ var fabric;
     var ContextualHost = (function () {
         function ContextualHost(content, direction, targetElement, hasArrow, modifiers, matchTargetWidth, disposalCallback) {
             if (hasArrow === void 0) { hasArrow = true; }
-            this._ftl = new FabricTemplateLibrary();
             this._resizeAction = this._resizeAction.bind(this);
             this._dismissAction = this._dismissAction.bind(this);
+            this._handleKeyUpDismiss = this._handleKeyUpDismiss.bind(this);
             this._matchTargetWidth = matchTargetWidth || false;
             this._direction = direction;
-            this._container = this._ftl.ContextualHost();
+            this._container = this.createContainer();
             this._contextualHost = this._container;
-            this._contextualHostMain = this._contextualHost.querySelector(CONTEXT_HOST_MAIN_CLASS);
+            this._contextualHostMain = this._contextualHost.getElementsByClassName(CONTEXT_HOST_MAIN_CLASS)[0];
             this._contextualHostMain.appendChild(content);
             this._hasArrow = hasArrow;
-            this._arrow = this._container.querySelector(CONTEXT_HOST_BEAK_CLASS);
+            this._arrow = this._container.getElementsByClassName(CONTEXT_HOST_BEAK_CLASS)[0];
             this._targetElement = targetElement;
             this._openModal();
             this._setResizeDisposal();
@@ -2087,6 +669,7 @@ var fabric;
             if (ContextualHost.hosts.length > 0) {
                 window.removeEventListener("resize", this._resizeAction, false);
                 document.removeEventListener("click", this._dismissAction, true);
+                document.removeEventListener("keyup", this._handleKeyUpDismiss, true);
                 this._container.parentNode.removeChild(this._container);
                 if (this._disposalCallback) {
                     this._disposalCallback();
@@ -2109,6 +692,21 @@ var fabric;
         };
         ContextualHost.prototype.contains = function (value) {
             return this._container.contains(value);
+        };
+        ContextualHost.prototype.createContainer = function () {
+            var ContextualHost0 = document.createElement("div");
+            ContextualHost0.setAttribute("class", "ms-ContextualHost");
+            ContextualHost0.innerHTML += " ";
+            var ContextualHost0c1 = document.createElement("div");
+            ContextualHost0c1.setAttribute("class", CONTEXT_HOST_MAIN_CLASS);
+            ContextualHost0c1.innerHTML += " ";
+            ContextualHost0.appendChild(ContextualHost0c1);
+            ContextualHost0.innerHTML += " ";
+            var ContextualHost0c3 = document.createElement("div");
+            ContextualHost0c3.setAttribute("class", CONTEXT_HOST_BEAK_CLASS);
+            ContextualHost0.appendChild(ContextualHost0c3);
+            ContextualHost0.innerHTML += "";
+            return ContextualHost0;
         };
         ContextualHost.prototype._openModal = function () {
             var _this = this;
@@ -2323,14 +921,13 @@ var fabric;
             }
         };
         ContextualHost.prototype._setDismissClick = function () {
-            var _this = this;
             document.addEventListener("click", this._dismissAction, true);
-            document.addEventListener("focus", this._dismissAction, true);
-            document.addEventListener("keyup", function (e) {
-                if (e.keyCode === 32 || e.keyCode === 27) {
-                    _this._dismissAction(e);
-                }
-            }, true);
+            document.addEventListener("keyup", this._handleKeyUpDismiss, true);
+        };
+        ContextualHost.prototype._handleKeyUpDismiss = function (e) {
+            if (e.keyCode === 32 || e.keyCode === 27) {
+                this._dismissAction(e);
+            }
         };
         ContextualHost.prototype._resizeAction = function () {
             this.disposeModal();
@@ -2346,7 +943,6 @@ var fabric;
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 /// <reference path="../Button/Button.ts"/>
 /// <reference path="../Button/IButton.ts"/>
-/// <reference path="../../../dist/js/fabric.templates.ts"/>
 /**
  * Callout
  *
@@ -2387,6 +983,8 @@ var fabric;
         };
         Callout.prototype._closeHandler = function (e) {
             this._contextualHost.disposeModal();
+            this._closeButton.removeEventListener("click", this._closeHandler.bind(this), false);
+            this._addTarget.removeEventListener("click", this._clickHandler.bind(this), true);
         };
         Callout.prototype._clickHandler = function (e) {
             this._openContextMenu();
@@ -2416,6 +1014,9 @@ var fabric;
             this._container = container;
             this._choiceField = this._container.querySelector(".ms-CheckBox-field");
             this._choiceInput = this._container.querySelector(".ms-CheckBox-input");
+            if (this._choiceInput.checked) {
+                this._choiceField.setAttribute("aria-checked", "true");
+            }
             if (this._choiceField.getAttribute("aria-checked") === "true") {
                 this._choiceField.classList.add("is-checked");
             }
@@ -2431,16 +1032,15 @@ var fabric;
             else {
                 this.check();
             }
+            this._choiceInput.click();
         };
         CheckBox.prototype.check = function () {
             this._choiceField.setAttribute("aria-checked", "true");
             this._choiceField.classList.add("is-checked");
-            this._choiceInput.checked = true;
         };
         CheckBox.prototype.unCheck = function () {
             this._choiceField.setAttribute("aria-checked", "false");
             this._choiceField.classList.remove("is-checked");
-            this._choiceInput.checked = false;
         };
         CheckBox.prototype.removeListeners = function () {
             this._choiceField.removeEventListener("focus", this._FocusHandler.bind(this));
@@ -2796,7 +1396,6 @@ var fabric;
 })(fabric || (fabric = {}));
 
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
-/// <reference path="../../../dist/js/fabric.templates.ts"/>
 /// <reference path="../ContextualHost/ContextualHost.ts"/>
 /**
  * CommandButton
@@ -3212,6 +1811,103 @@ var fabric;
 })(fabric || (fabric = {}));
 
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
+/// <reference path="../ContextualHost/ContextualHost.ts"/>
+/// <reference path="../Button/Button.ts"/>
+var fabric;
+(function (fabric) {
+    var MODAL_POSITION = "bottom";
+    var SUBMENU_POSITION = "right";
+    var ContextualMenu = (function () {
+        function ContextualMenu(container, hostTarget, position) {
+            this._container = container;
+            this._hostTarget = hostTarget;
+            this._position = position ? position : MODAL_POSITION;
+            this._setOpener(hostTarget);
+            this._init();
+        }
+        ContextualMenu.prototype.getHost = function () {
+            return this._host;
+        };
+        ContextualMenu.prototype._init = function () {
+            this._container.addEventListener("click", this._onContextualMenuClick.bind(this), true);
+        };
+        ContextualMenu.prototype._onContextualMenuClick = function (event) {
+            var target = event.target;
+            var classList = target.classList;
+            if (classList.contains("ms-ContextualMenu-link") && !classList.contains("is-disabled")) {
+                if (this._container.classList.contains("ms-ContextualMenu--multiselect")) {
+                    this._multiSelect(target);
+                }
+                else {
+                    this._singleSelect(target);
+                    if (!target.parentElement.classList.contains("ms-ContextualMenu-item--hasMenu")) {
+                        this._host.disposeModal();
+                    }
+                }
+            }
+        };
+        ContextualMenu.prototype._multiSelect = function (target) {
+            if (target.classList.contains("is-selected")) {
+                target.classList.remove("is-selected");
+            }
+            else {
+                target.classList.add("is-selected");
+            }
+        };
+        ContextualMenu.prototype._singleSelect = function (target) {
+            var selecteds = this._container.querySelectorAll(".is-selected");
+            var i = selecteds.length;
+            while (i--) {
+                selecteds[i].classList.remove("is-selected");
+            }
+            target.classList.add("is-selected");
+        };
+        ContextualMenu.prototype._setOpener = function (hostTarget) {
+            var _this = this;
+            hostTarget.addEventListener("click", function (event) {
+                event.preventDefault();
+                _this._openContextMenu(event);
+            });
+        };
+        ContextualMenu.prototype._openContextMenu = function (event) {
+            this._createModalHostView(this._container, this._position, this._hostTarget);
+            this._checkForSubmenus(this._container);
+        };
+        ContextualMenu.prototype._checkForSubmenus = function (container) {
+            var _this = this;
+            var submenus = container.querySelectorAll(".ms-ContextualMenu-item.ms-ContextualMenu-item--hasMenu");
+            var i = submenus.length;
+            if (submenus.length) {
+                var _loop_1 = function() {
+                    var button = submenus[i].querySelector(".ms-ContextualMenu-link");
+                    var menu = submenus[i].querySelector(".ms-ContextualMenu");
+                    if (menu) {
+                        var contextualMenu_1 = new fabric.ContextualMenu(menu, button, SUBMENU_POSITION);
+                        menu.addEventListener("hostAdded", function () {
+                            _this._host.setChildren(contextualMenu_1.getHost());
+                        });
+                    }
+                };
+                while (i--) {
+                    _loop_1();
+                }
+            }
+        };
+        ContextualMenu.prototype._createModalHostView = function (container, position, hostTarget) {
+            container.classList.remove("is-hidden");
+            this._host = new fabric.ContextualHost(container, position, hostTarget, false);
+            var event = document.createEvent("Event");
+            event.initEvent("hostAdded", true, true);
+            container.dispatchEvent(event);
+        };
+        return ContextualMenu;
+    }());
+    fabric.ContextualMenu = ContextualMenu;
+})(fabric || (fabric = {}));
+
+"use strict";
+
+// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 // @TODO - we can add this once jquery is removed
 // "use strict";
 /// <reference path="../../../typings/jquery.d.ts"/>
@@ -3356,7 +2052,7 @@ var fabric;
             /** Change the highlighted month. */
             $monthPicker.on("click", ".js-changeDate", function (event) {
                 event.preventDefault();
-                var $changeDate = $(event.toElement);
+                var $changeDate = $(event.target);
                 /** Get the requested date from the data attributes. */
                 var newYear = $changeDate.attr("data-year");
                 var newMonth = $changeDate.attr("data-month");
@@ -3371,7 +2067,7 @@ var fabric;
             /** Change the highlighted year. */
             $yearPicker.on("click", ".js-changeDate", function (event) {
                 event.preventDefault();
-                var $changeDate = $(event.toElement);
+                var $changeDate = $(event.target);
                 /** Get the requested date from the data attributes. */
                 var newYear = $changeDate.attr("data-year");
                 var newMonth = $changeDate.attr("data-month");
@@ -3454,115 +2150,17 @@ var fabric;
 })(fabric || (fabric = {}));
 
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
-/// <reference path="../../../dist/js/fabric.templates.ts"/>
-/// <reference path="../ContextualHost/ContextualHost.ts"/>
-/// <reference path="../Button/Button.ts"/>
-var fabric;
-(function (fabric) {
-    var MODAL_POSITION = "bottom";
-    var SUBMENU_POSITION = "right";
-    var ContextualMenu = (function () {
-        function ContextualMenu(container, hostTarget, position) {
-            this._container = container;
-            this._hostTarget = hostTarget;
-            this._position = position ? position : MODAL_POSITION;
-            this._setOpener(hostTarget);
-            this._init();
-        }
-        ContextualMenu.prototype.getHost = function () {
-            return this._host;
-        };
-        ContextualMenu.prototype._init = function () {
-            this._container.addEventListener("click", this._onContextualMenuClick.bind(this), true);
-        };
-        ContextualMenu.prototype._onContextualMenuClick = function (event) {
-            var target = event.target;
-            var classList = target.classList;
-            if (classList.contains("ms-ContextualMenu-link") && !classList.contains("is-disabled")) {
-                if (this._container.classList.contains("ms-ContextualMenu--multiselect")) {
-                    this._multiSelect(target);
-                }
-                else {
-                    this._singleSelect(target);
-                    if (!target.parentElement.classList.contains("ms-ContextualMenu-item--hasMenu")) {
-                        this._host.disposeModal();
-                    }
-                }
-            }
-        };
-        ContextualMenu.prototype._multiSelect = function (target) {
-            if (target.classList.contains("is-selected")) {
-                target.classList.remove("is-selected");
-            }
-            else {
-                target.classList.add("is-selected");
-            }
-        };
-        ContextualMenu.prototype._singleSelect = function (target) {
-            var selecteds = this._container.querySelectorAll(".is-selected");
-            var i = selecteds.length;
-            while (i--) {
-                selecteds[i].classList.remove("is-selected");
-            }
-            target.classList.add("is-selected");
-        };
-        ContextualMenu.prototype._setOpener = function (hostTarget) {
-            var _this = this;
-            hostTarget.addEventListener("click", function (event) {
-                event.preventDefault();
-                _this._openContextMenu(event);
-            });
-        };
-        ContextualMenu.prototype._openContextMenu = function (event) {
-            this._createModalHostView(this._container, this._position, this._hostTarget);
-            this._checkForSubmenus(this._container);
-        };
-        ContextualMenu.prototype._checkForSubmenus = function (container) {
-            var _this = this;
-            var submenus = container.querySelectorAll(".ms-ContextualMenu-item.ms-ContextualMenu-item--hasMenu");
-            var i = submenus.length;
-            if (submenus.length) {
-                var _loop_1 = function() {
-                    var button = submenus[i].querySelector(".ms-ContextualMenu-link");
-                    var menu = submenus[i].querySelector(".ms-ContextualMenu");
-                    if (menu) {
-                        var contextualMenu_1 = new fabric.ContextualMenu(menu, button, SUBMENU_POSITION);
-                        menu.addEventListener("hostAdded", function () {
-                            _this._host.setChildren(contextualMenu_1.getHost());
-                        });
-                    }
-                };
-                while (i--) {
-                    _loop_1();
-                }
-            }
-        };
-        ContextualMenu.prototype._createModalHostView = function (container, position, hostTarget) {
-            container.classList.remove("is-hidden");
-            this._host = new fabric.ContextualHost(container, position, hostTarget, false);
-            var event = document.createEvent("Event");
-            event.initEvent("hostAdded", true, true);
-            container.dispatchEvent(event);
-        };
-        return ContextualMenu;
-    }());
-    fabric.ContextualMenu = ContextualMenu;
-})(fabric || (fabric = {}));
-
-"use strict";
-
-// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
-/// <reference path="../../../dist/js/fabric.templates.ts"/>
 var fabric;
 (function (fabric) {
     var Overlay = (function () {
         function Overlay(overlayElement) {
-            this._ftl = new FabricTemplateLibrary();
             if (overlayElement) {
                 this.overlayElement = overlayElement;
             }
             else {
-                this.overlayElement = this._ftl.Overlay();
+                var overlayContainer = document.createElement("div");
+                overlayContainer.setAttribute("class", "ms-Overlay");
+                this.overlayElement = overlayContainer;
             }
             this.overlayElement.addEventListener("click", this.hide.bind(this), false);
         }
@@ -3659,6 +2257,7 @@ var fabric;
             this._renderElements();
         }
         PanelHost.prototype.dismiss = function () {
+            this._overlay.hide();
             document.body.removeChild(this.panelHost);
         };
         PanelHost.prototype.update = function (layer, callBack) {
@@ -3711,6 +2310,8 @@ var fabric;
             this._direction = direction || "right";
             this._animateOverlay = animateOverlay || true;
             this._panelHost = new fabric.PanelHost(this._panel, this._animateInPanel);
+            this._closeButton = this._panel.querySelector(".ms-PanelAction-close");
+            this._clickHandler = this.dismiss.bind(this, null);
             this._setEvents();
             // Set body height to 100% and overflow hidden while panel is open
             document.body.setAttribute("style", "height: 100%; overflow: hidden;");
@@ -3728,17 +2329,14 @@ var fabric;
                 // Remove temporary body styles
                 document.body.setAttribute("style", "");
             }, ANIMATION_END);
+            if (this._closeButton !== null) {
+                this._closeButton.removeEventListener("click", this._clickHandler);
+            }
         };
         Panel.prototype._setEvents = function () {
-            var _this = this;
-            this._panelHost._overlay.overlayElement.addEventListener("click", function () {
-                _this.dismiss();
-            });
-            var closeButton = this._panel.querySelector(".ms-PanelAction-close");
-            if (closeButton !== null) {
-                closeButton.addEventListener("click", function () {
-                    _this.dismiss();
-                });
+            this._panelHost._overlay.overlayElement.addEventListener("click", this._clickHandler);
+            if (this._closeButton !== null) {
+                this._closeButton.addEventListener("click", this._clickHandler);
             }
         };
         Panel.prototype._animateInPanel = function (layer) {
@@ -3895,7 +2493,7 @@ var fabric;
             document.removeEventListener("click", this._onCloseDropdown);
         };
         Dropdown.prototype._onItemSelection = function (evt) {
-            var item = evt.srcElement;
+            var item = evt.target;
             var isDropdownDisabled = this._container.classList.contains(IS_DISABLED_CLASS);
             var isOptionDisabled = item.classList.contains(IS_DISABLED_CLASS);
             if (!isDropdownDisabled && !isOptionDisabled) {
@@ -4353,8 +2951,13 @@ var fabric;
             this._peoplePickerMenu = this._container.querySelector(".ms-PeoplePicker-results");
             this._peoplePickerSearch = this._container.querySelector(".ms-TextField-field");
             this._peoplePickerSearchBox = this._container.querySelector(".ms-PeoplePicker-searchBox");
-            this._selectedPeople = this._container.querySelectorAll(".ms-PeoplePicker-selectedPeople");
+            this._selectedPeople = this._container.querySelector(".ms-PeoplePicker-selectedPeople");
             this._assignClicks();
+            if (this._selectedPeople) {
+                this._assignRemoveHandler();
+                this._selectedCount = this._container.querySelector(".ms-PeoplePicker-selectedCount");
+                this._selectedPlural = this._container.querySelector(".ms-PeoplePicker-selectedCountPlural");
+            }
             if (this._peoplePickerMenu) {
                 this._peoplePickerMenu.setAttribute("style", "display: none;");
             }
@@ -4377,7 +2980,10 @@ var fabric;
             this._peoplePickerResults = this._peoplePickerMenu.querySelectorAll(".ms-PeoplePicker-result");
             // Add _selectResult listeners to each result
             for (var i = 0; i < this._peoplePickerResults.length; i++) {
-                this._peoplePickerResults[i].addEventListener("click", this._selectResult.bind(this), true);
+                var personaResult = this._peoplePickerResults[i].querySelector(".ms-Persona");
+                var removeButton = this._peoplePickerResults[i].querySelector(".ms-PeoplePicker-resultAction");
+                personaResult.addEventListener("click", this._selectResult.bind(this), true);
+                removeButton.addEventListener("click", this._removeItem.bind(this), true);
             }
         };
         PeoplePicker.prototype._selectResult = function (e) {
@@ -4391,6 +2997,7 @@ var fabric;
             else {
                 this._tokenizeResult(clonedResult);
             }
+            this._updateCount();
             // Close the open contextual host
             this._contextualHostView.disposeModal();
         };
@@ -4425,6 +3032,18 @@ var fabric;
         PeoplePicker.prototype._removeResult = function (e) {
             var currentResult = this._findElement(e.target, "ms-PeoplePicker-selectedPerson");
             currentResult.remove();
+            this._updateCount();
+        };
+        PeoplePicker.prototype._removeItem = function (e) {
+            var currentItem = this._findElement(e.target, "ms-PeoplePicker-result");
+            currentItem.remove();
+        };
+        PeoplePicker.prototype._updateCount = function () {
+            if (this._selectedPeople) {
+                var count = this._selectedPeople.querySelectorAll(".ms-PeoplePicker-selectedPerson").length;
+                this._selectedCount.textContent = count.toString();
+                this._selectedPlural.style.display = (count === 1) ? "none" : "inline";
+            }
         };
         PeoplePicker.prototype._tokenizeResult = function (tokenResult) {
             var searchBox = this._container.querySelector(".ms-PeoplePicker-searchBox");
@@ -4465,6 +3084,12 @@ var fabric;
                 }
             }, true);
         };
+        PeoplePicker.prototype._assignRemoveHandler = function () {
+            var selectedPeople = this._selectedPeople.querySelectorAll(".ms-PeoplePicker-selectedPerson");
+            for (var i = 0; i < selectedPeople.length; i++) {
+                selectedPeople[i].querySelector(".ms-PeoplePicker-resultAction").addEventListener("click", this._removeResult.bind(this), true);
+            }
+        };
         PeoplePicker.prototype._contextHostCallBack = function () {
             this._peoplePickerSearchBox.classList.remove("is-active");
             this._isContextualMenuOpen = false;
@@ -4502,7 +3127,7 @@ var fabric;
         };
         Pivot.prototype._addListeners = function () {
             var _this = this;
-            this._container.addEventListener("click", this._selectTabMouse.bind(this), false);
+            this._container.querySelector(".ms-Pivot-links").addEventListener("click", this._selectTabMouse.bind(this), false);
             this._container.addEventListener("keyup", function (event) {
                 if (event.keyCode === 13) {
                     _this._selectTabKeyboard(event);
@@ -4850,6 +3475,10 @@ var fabric;
         /** Add event listeners according to the type(s) of text field */
         TextField.prototype._addListeners = function () {
             var _this = this;
+            // Ensure that the text box gets focus when the label is clicked.
+            this._textFieldLabel.addEventListener("click", function (event) {
+                _this._textField.focus();
+            });
             /** Placeholder - hide/unhide the placeholder  */
             if (this._type.indexOf(TextFieldConsts.Type.Placeholder) >= 0) {
                 this._textField.addEventListener("focus", function (event) {
