@@ -1,5 +1,5 @@
 /**
- * Office UI Fabric JS 1.2.0
+ * Office UI Fabric JS 1.3.0
  * The JavaScript front-end framework for building experiences for Office 365.
  **/
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
@@ -360,7 +360,13 @@ var fabric;
         function Breadcrumb(container) {
             this._currentMaxItems = 0;
             this._itemCollection = [];
+            this._tabIndex = 2;
             this.container = container;
+            this._onResize = this._onResize.bind(this);
+            this._openOverflow = this._openOverflow.bind(this);
+            this._overflowKeyPress = this._overflowKeyPress.bind(this);
+            this._closeOverflow = this._closeOverflow.bind(this);
+            this.removeOutlinesOnClick = this.removeOutlinesOnClick.bind(this);
             this.init();
         }
         /**
@@ -373,10 +379,9 @@ var fabric;
          * Adds a breadcrumb item to a breadcrumb
          * @param itemLabel {String} the item's text label
          * @param itemLink {String} the item's href link
-         * @param tabIndex {number} the item's tabIndex
         */
-        Breadcrumb.prototype.addItem = function (itemLabel, itemLink, tabIndex) {
-            this._itemCollection.push({ text: itemLabel, link: itemLink, tabIndex: tabIndex });
+        Breadcrumb.prototype.addItem = function (itemLabel, itemLink) {
+            this._itemCollection.push({ text: itemLabel, link: itemLink });
             this._updateBreadcrumbs();
         };
         /**
@@ -394,9 +399,9 @@ var fabric;
         };
         ;
         /**
-         * removes a breadcrumb item by position in the breadcrumbs list
+         * removes a breadcrumb item by position in the breadcrumb's list
          * index starts at 0
-         * @param value {String} the item's index
+         * @param value {number} the item's index
         */
         Breadcrumb.prototype.removeItemByPosition = function (value) {
             this._itemCollection.splice(value, 1);
@@ -451,6 +456,7 @@ var fabric;
          * updates the breadcrumbs and overflow menu
         */
         Breadcrumb.prototype._updateBreadcrumbs = function () {
+            this._tabIndex = 2;
             var maxItems = window.innerWidth > Breadcrumb.MEDIUM ? 4 : 2;
             if (this._itemCollection.length > maxItems) {
                 this._breadcrumb.classList.add("is-overflow");
@@ -458,8 +464,8 @@ var fabric;
             else {
                 this._breadcrumb.classList.remove("is-overflow");
             }
-            this._addBreadcrumbItems(maxItems);
             this._addItemsToOverflow(maxItems);
+            this._addBreadcrumbItems(maxItems);
         };
         ;
         /**
@@ -473,14 +479,12 @@ var fabric;
             overflowItems.forEach(function (item) {
                 var li = document.createElement("li");
                 li.className = "ms-ContextualMenu-item";
-                if (!isNaN(item.tabIndex)) {
-                    li.setAttribute("tabindex", item.tabIndex);
-                }
                 var a = document.createElement("a");
                 a.className = "ms-ContextualMenu-link";
                 if (item.link !== null) {
                     a.setAttribute("href", item.link);
                 }
+                a.setAttribute("tabindex", (_this._tabIndex++).toString());
                 a.textContent = item.text;
                 li.appendChild(a);
                 _this._contextMenu.appendChild(li);
@@ -504,9 +508,7 @@ var fabric;
                     if (item.link !== null) {
                         a.setAttribute("href", item.link);
                     }
-                    if (!isNaN(item.tabIndex)) {
-                        a.setAttribute("tabindex", item.tabIndex);
-                    }
+                    a.setAttribute("tabindex", (this._tabIndex++).toString());
                     a.textContent = item.text;
                     chevron.className = "ms-Breadcrumb-chevron ms-Icon ms-Icon--ChevronRight";
                     listItem.appendChild(a);
@@ -562,10 +564,10 @@ var fabric;
         * sets handlers for resize and button click events
         */
         Breadcrumb.prototype._setListeners = function () {
-            window.addEventListener("resize", this._onResize.bind(this));
-            this._overflowButton.addEventListener("click", this._openOverflow.bind(this), false);
-            this._overflowButton.addEventListener("keypress", this._overflowKeyPress.bind(this), false);
-            document.addEventListener("click", this._closeOverflow.bind(this), false);
+            window.addEventListener("resize", this._onResize, false);
+            this._overflowButton.addEventListener("click", this._openOverflow, false);
+            this._overflowButton.addEventListener("keypress", this._overflowKeyPress, false);
+            document.addEventListener("click", this._closeOverflow, false);
             this._breadcrumbList.addEventListener("click", this.removeOutlinesOnClick, false);
         };
         // medium breakpoint
@@ -777,11 +779,14 @@ var fabric;
             var teLeft = teBR.left;
             var teRight = teBR.right;
             var teTop = teBR.top;
+            var teWidth = teBR.width;
             var teHeight = teBR.height;
             var mHLeft;
             var mHTop;
             var mWidth = "";
             var arrowTop;
+            var arrowLeft;
+            var windowX = window.scrollX ? window.scrollX : 0;
             var windowY = window.scrollY ? window.scrollY : 0;
             var arrowSpace = (this._hasArrow) ? ARROW_SIZE : 0;
             if (this._matchTargetWidth) {
@@ -789,7 +794,7 @@ var fabric;
             }
             switch (curDirection) {
                 case "left":
-                    mHLeft = (teLeft - this._modalWidth) + arrowSpace;
+                    mHLeft = teLeft - this._modalWidth - arrowSpace;
                     mHTop = this._calcTop(this._modalHeight, teHeight, teTop);
                     mHTop += window.scrollY ? window.scrollY : 0;
                     this._container.setAttribute("style", "top: " + mHTop + "px; left: " + mHLeft + "px;" + mWidth);
@@ -814,11 +819,14 @@ var fabric;
                     break;
                 case "top":
                     mHLeft = this._calcLeft(this._modalWidth, this._teWidth, teLeft);
-                    mHTop = (teTop - this._modalHeight) + arrowSpace;
+                    mHTop = teTop - this._modalHeight - arrowSpace;
                     mHTop += windowY;
                     this._container.setAttribute("style", "top: " + mHTop + "px; left: " + mHLeft + "px;" + mWidth);
                     this._container.classList.add(MODAL_STATE_POSITIONED);
                     if (this._hasArrow) {
+                        arrowTop = this._modalHeight - (arrowSpace / 2);
+                        arrowLeft = Math.max(windowX + teLeft - mHLeft + ((teWidth - arrowSpace) / 2), ARROW_OFFSET);
+                        this._arrow.setAttribute("style", "top: " + arrowTop + "px; left: " + arrowLeft + "px;");
                         this._container.classList.add(ARROW_BOTTOM_CLASS);
                     }
                     break;
@@ -829,6 +837,8 @@ var fabric;
                     this._container.setAttribute("style", "top: " + mHTop + "px; left: " + mHLeft + "px;" + mWidth);
                     this._container.classList.add(MODAL_STATE_POSITIONED);
                     if (this._hasArrow) {
+                        arrowLeft = Math.max(windowX + teLeft - mHLeft + ((teWidth - arrowSpace) / 2), ARROW_OFFSET);
+                        this._arrow.setAttribute("style", "left: " + arrowLeft + "px;");
                         this._container.classList.add(ARROW_TOP_CLASS);
                     }
                     break;
@@ -1046,7 +1056,7 @@ var fabric;
             this._choiceField.removeEventListener("focus", this._FocusHandler.bind(this));
             this._choiceField.removeEventListener("blur", this._BlurHandler.bind(this));
             this._choiceField.removeEventListener("click", this._ClickHandler.bind(this));
-            this._choiceField.addEventListener("keydown", this._KeydownHandler.bind(this));
+            this._choiceField.removeEventListener("keydown", this._KeydownHandler.bind(this));
         };
         CheckBox.prototype._addListeners = function (events) {
             var ignore = events && events.ignore;
@@ -1822,6 +1832,7 @@ var fabric;
             this._container = container;
             this._hostTarget = hostTarget;
             this._position = position ? position : MODAL_POSITION;
+            this._isOpen = false;
             this._setOpener(hostTarget);
             this._init();
         }
@@ -1830,6 +1841,14 @@ var fabric;
         };
         ContextualMenu.prototype._init = function () {
             this._container.addEventListener("click", this._onContextualMenuClick.bind(this), true);
+            document.addEventListener("click", this._onDocumentClick.bind(this), false);
+        };
+        ContextualMenu.prototype._onDocumentClick = function (event) {
+            var target = event.target;
+            var classList = target.classList;
+            if (!this._hostTarget.contains(target) && !classList.contains("ms-ContextualMenu-link")) {
+                this._isOpen = false;
+            }
         };
         ContextualMenu.prototype._onContextualMenuClick = function (event) {
             var target = event.target;
@@ -1842,6 +1861,7 @@ var fabric;
                     this._singleSelect(target);
                     if (!target.parentElement.classList.contains("ms-ContextualMenu-item--hasMenu")) {
                         this._host.disposeModal();
+                        this._isOpen = false;
                     }
                 }
             }
@@ -1862,11 +1882,15 @@ var fabric;
             }
             target.classList.add("is-selected");
         };
+        ContextualMenu.prototype._toggleMenu = function (event) {
+            (!this._isOpen) ? this._openContextMenu(event) : this._host.disposeModal();
+            this._isOpen = !this._isOpen;
+        };
         ContextualMenu.prototype._setOpener = function (hostTarget) {
             var _this = this;
             hostTarget.addEventListener("click", function (event) {
                 event.preventDefault();
-                _this._openContextMenu(event);
+                _this._toggleMenu(event);
             });
         };
         ContextualMenu.prototype._openContextMenu = function (event) {
@@ -1968,6 +1992,7 @@ var fabric;
                 }
             }, options || {}));
             var $picker = $dateField.pickadate("picker");
+            this.picker = $picker;
             /** Respond to built-in picker events. */
             $picker.on({
                 render: function () {
@@ -2008,37 +2033,37 @@ var fabric;
             $monthControls.on("click", ".js-prevMonth", function (event) {
                 event.preventDefault();
                 var newMonth = $picker.get("highlight").month - 1;
-                _this.changeHighlightedDate($picker, null, newMonth, null);
+                _this.changeHighlightedDate([null, newMonth, null]);
             });
             /** Move ahead one month. */
             $monthControls.on("click", ".js-nextMonth", function (event) {
                 event.preventDefault();
                 var newMonth = $picker.get("highlight").month + 1;
-                _this.changeHighlightedDate($picker, null, newMonth, null);
+                _this.changeHighlightedDate([null, newMonth, null]);
             });
             /** Move back one year. */
             $monthPicker.on("click", ".js-prevYear", function (event) {
                 event.preventDefault();
                 var newYear = $picker.get("highlight").year - 1;
-                _this.changeHighlightedDate($picker, newYear, null, null);
+                _this.changeHighlightedDate([newYear, null, null]);
             });
             /** Move ahead one year. */
             $monthPicker.on("click", ".js-nextYear", function (event) {
                 event.preventDefault();
                 var newYear = $picker.get("highlight").year + 1;
-                _this.changeHighlightedDate($picker, newYear, null, null);
+                _this.changeHighlightedDate([newYear, null, null]);
             });
             /** Move back one decade. */
             $yearPicker.on("click", ".js-prevDecade", function (event) {
                 event.preventDefault();
                 var newYear = $picker.get("highlight").year - 10;
-                _this.changeHighlightedDate($picker, newYear, null, null);
+                _this.changeHighlightedDate([newYear, null, null]);
             });
             /** Move ahead one decade. */
             $yearPicker.on("click", ".js-nextDecade", function (event) {
                 event.preventDefault();
                 var newYear = $picker.get("highlight").year + 10;
-                _this.changeHighlightedDate($picker, newYear, null, null);
+                _this.changeHighlightedDate([newYear, null, null]);
             });
             /** Go to the current date, shown in the day picking view. */
             $goToday.click(function (event) {
@@ -2058,7 +2083,7 @@ var fabric;
                 var newMonth = $changeDate.attr("data-month");
                 var newDay = $changeDate.attr("data-day");
                 /** Update the date. */
-                _this.changeHighlightedDate($picker, newYear, newMonth, newDay);
+                _this.changeHighlightedDate([newYear, newMonth, newDay]);
                 /** If we"ve been in the "picking months" state on mobile, remove that state so we show the calendar again. */
                 if ($datePicker.hasClass("is-pickingMonths")) {
                     $datePicker.removeClass("is-pickingMonths");
@@ -2073,7 +2098,7 @@ var fabric;
                 var newMonth = $changeDate.attr("data-month");
                 var newDay = $changeDate.attr("data-day");
                 /** Update the date. */
-                _this.changeHighlightedDate($picker, newYear, newMonth, newDay);
+                _this.changeHighlightedDate([newYear, newMonth, newDay]);
                 /** If we"ve been in the "picking years" state on mobile, remove that state so we show the calendar again. */
                 if ($datePicker.hasClass("is-pickingYears")) {
                     $datePicker.removeClass("is-pickingYears");
@@ -2094,19 +2119,10 @@ var fabric;
             });
         };
         /** Change the highlighted date. */
-        DatePicker.prototype.changeHighlightedDate = function ($picker, newYear, newMonth, newDay) {
-            /** All letiables are optional. If not provided, default to the current value. */
-            if (typeof newYear === "undefined" || newYear === null) {
-                newYear = $picker.get("highlight").year;
-            }
-            if (typeof newMonth === "undefined" || newMonth === null) {
-                newMonth = $picker.get("highlight").month;
-            }
-            if (typeof newDay === "undefined" || newDay === null) {
-                newDay = $picker.get("highlight").date;
-            }
+        DatePicker.prototype.changeHighlightedDate = function (dateArr) {
+            var newDateArr = this.setDateAttributes(dateArr);
             /** Update it. */
-            $picker.set("highlight", [newYear, newMonth, newDay]);
+            this.picker.set("highlight", newDateArr);
         };
         /** Whenever the picker renders, do our own rendering on the custom controls. */
         DatePicker.prototype.updateCustomView = function ($datePicker) {
@@ -2143,6 +2159,20 @@ var fabric;
             $("html, body").animate({
                 scrollTop: $datePicker.offset().top
             }, 367);
+        };
+        DatePicker.prototype.setDateAttributes = function (dateArr) {
+            var newYear = dateArr[0], newMonth = dateArr[1], newDay = dateArr[2];
+            /** All letiables are optional. If not provided, default to the current value. */
+            if (typeof newYear === "undefined" || newYear === null) {
+                newYear = this.picker.get("highlight").year;
+            }
+            if (typeof newMonth === "undefined" || newMonth === null) {
+                newMonth = this.picker.get("highlight").month;
+            }
+            if (typeof newDay === "undefined" || newDay === null) {
+                newDay = this.picker.get("highlight").date;
+            }
+            return [newYear, newMonth, newDay];
         };
         return DatePicker;
     }());
@@ -2257,7 +2287,7 @@ var fabric;
             this._renderElements();
         }
         PanelHost.prototype.dismiss = function () {
-            this._overlay.hide();
+            this.overlay.hide();
             document.body.removeChild(this.panelHost);
         };
         PanelHost.prototype.update = function (layer, callBack) {
@@ -2276,10 +2306,10 @@ var fabric;
             this.panelHost = document.createElement("div");
             this.panelHost.classList.add(PANEL_HOST_CLASS);
             this.panelHost.appendChild(this._layer);
-            this._overlay = new fabric.Overlay(this._overlayContainer);
-            this._overlay.show();
+            this.overlay = new fabric.Overlay(this._overlayContainer);
+            this.overlay.show();
             // Append Elements
-            this.panelHost.appendChild(this._overlay.overlayElement);
+            this.panelHost.appendChild(this.overlay.overlayElement);
         };
         return PanelHost;
     }());
@@ -2309,7 +2339,7 @@ var fabric;
             this._panel = panel;
             this._direction = direction || "right";
             this._animateOverlay = animateOverlay || true;
-            this._panelHost = new fabric.PanelHost(this._panel, this._animateInPanel);
+            this.panelHost = new fabric.PanelHost(this._panel, this._animateInPanel);
             this._closeButton = this._panel.querySelector(".ms-PanelAction-close");
             this._clickHandler = this.dismiss.bind(this, null);
             this._setEvents();
@@ -2322,7 +2352,7 @@ var fabric;
             setTimeout(function () {
                 _this._panel.classList.remove(ANIMATE_OUT_STATE);
                 _this._panel.classList.remove("is-open");
-                _this._panelHost.dismiss();
+                _this.panelHost.dismiss();
                 if (callBack) {
                     callBack();
                 }
@@ -2334,7 +2364,7 @@ var fabric;
             }
         };
         Panel.prototype._setEvents = function () {
-            this._panelHost._overlay.overlayElement.addEventListener("click", this._clickHandler);
+            this.panelHost.overlay.overlayElement.addEventListener("click", this._clickHandler);
             if (this._closeButton !== null) {
                 this._closeButton.addEventListener("click", this._clickHandler);
             }
@@ -2358,6 +2388,7 @@ var fabric;
 (function (fabric) {
     var DROPDOWN_CLASS = "ms-Dropdown";
     var DROPDOWN_TITLE_CLASS = "ms-Dropdown-title";
+    var DROPDOWN_LABEL_HELPER = "ms-Dropdown-truncator";
     var DROPDOWN_ITEMS_CLASS = "ms-Dropdown-items";
     var DROPDOWN_ITEM_CLASS = "ms-Dropdown-item";
     var DROPDOWN_SELECT_CLASS_SELECTOR = ".ms-Dropdown-select";
@@ -2382,6 +2413,9 @@ var fabric;
          */
         function Dropdown(container) {
             this._container = container;
+            this._dropdownLabelHelper = document.createElement("span");
+            this._dropdownLabelHelper.classList.add(DROPDOWN_LABEL_HELPER);
+            this._dropdownLabelHelper.classList.add(DROPDOWN_TITLE_CLASS);
             this._newDropdownLabel = document.createElement("span");
             this._newDropdownLabel.classList.add(DROPDOWN_TITLE_CLASS);
             this._newDropdown = document.createElement("ul");
@@ -2415,15 +2449,37 @@ var fabric;
             /** Add the new replacement dropdown */
             container.appendChild(this._newDropdownLabel);
             container.appendChild(this._newDropdown);
+            /** Add dropdown label helper for truncation */
+            container.appendChild(this._dropdownLabelHelper);
             /** Toggle open/closed state of the dropdown when clicking its title. */
             this._newDropdownLabel.addEventListener("click", this._onOpenDropdown);
+            this._checkTruncation();
             this._setWindowEvent();
         }
         Dropdown.prototype._setWindowEvent = function () {
             var _this = this;
             window.addEventListener("resize", function () {
                 _this._doResize();
+                _this._checkTruncation();
             }, false);
+        };
+        Dropdown.prototype._checkTruncation = function () {
+            var selected = this._newDropdown.querySelector("." + IS_SELECTED_CLASS);
+            var origText = (selected ?
+                selected.textContent :
+                this._newDropdown.querySelectorAll("." + DROPDOWN_ITEM_CLASS)[0].textContent);
+            this._dropdownLabelHelper.textContent = origText;
+            if (this._dropdownLabelHelper.offsetHeight > this._newDropdownLabel.offsetHeight) {
+                var i = 0;
+                var ellipsis = "...";
+                var newText = void 0;
+                do {
+                    i--;
+                    newText = origText.slice(0, i);
+                    this._dropdownLabelHelper.textContent = newText + ellipsis;
+                } while (this._dropdownLabelHelper.offsetHeight > this._newDropdownLabel.offsetHeight);
+            }
+            this._newDropdownLabel.textContent = this._dropdownLabelHelper.textContent;
         };
         Dropdown.prototype._getScreenSize = function () {
             var w = window;
@@ -2461,13 +2517,20 @@ var fabric;
                 this._panel = new fabric.Panel(this._panelContainer);
             }
         };
-        Dropdown.prototype._removeDropdownAsPanel = function () {
+        Dropdown.prototype._removeDropdownAsPanel = function (evt) {
             var _this = this;
             if (this._panel !== undefined) {
                 /** destroy panel and move dropdown back to outside the panel */
-                this._panel.dismiss(function () {
-                    _this._container.appendChild(_this._newDropdown);
-                });
+                /* if event target is overlay element, only append dropdown to prevent */
+                /* double dismiss bug, otherwise, dismiss and append */
+                if (evt && evt.target === this._panel.panelHost.overlay.overlayElement) {
+                    this._container.appendChild(this._newDropdown);
+                }
+                else {
+                    this._panel.dismiss(function () {
+                        _this._container.appendChild(_this._newDropdown);
+                    });
+                }
                 this._panel = undefined;
             }
         };
@@ -2477,6 +2540,7 @@ var fabric;
             if (!isDisabled && !isOpen) {
                 /** Stop the click event from propagating, which would just close the dropdown immediately. */
                 evt.stopPropagation();
+                this._closeOtherDropdowns();
                 /** Go ahead and open that dropdown. */
                 this._container.classList.add(IS_OPEN_CLASS);
                 /** Temporarily bind an event to the document that will close this dropdown when clicking anywhere. */
@@ -2487,8 +2551,14 @@ var fabric;
                 }
             }
         };
-        Dropdown.prototype._onCloseDropdown = function () {
-            this._removeDropdownAsPanel();
+        Dropdown.prototype._closeOtherDropdowns = function () {
+            var dropdowns = document.querySelectorAll("." + DROPDOWN_CLASS + "." + IS_OPEN_CLASS);
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].classList.remove(IS_OPEN_CLASS);
+            }
+        };
+        Dropdown.prototype._onCloseDropdown = function (evt) {
+            this._removeDropdownAsPanel(evt);
             this._container.classList.remove(IS_OPEN_CLASS);
             document.removeEventListener("click", this._onCloseDropdown);
         };
@@ -2511,6 +2581,7 @@ var fabric;
                 }
                 /** Update the replacement dropdown's title. */
                 this._newDropdownLabel.innerHTML = item.textContent;
+                this._checkTruncation();
                 /** Trigger any change event tied to the original dropdown. */
                 var changeEvent = document.createEvent("HTMLEvents");
                 changeEvent.initEvent("change", false, true);
@@ -2884,7 +2955,7 @@ var fabric;
         MessageBanner.prototype._expand = function () {
             var icon = this._chevronButton.querySelector(".ms-Icon");
             this._errorBanner.className += " is-expanded";
-            icon.className = "ms-Icon ms-Icon--chevronsUp";
+            icon.className = "ms-Icon ms-Icon--DoubleChevronUp";
         };
         /**
          * collapses component to only show truncated message
@@ -2892,7 +2963,7 @@ var fabric;
         MessageBanner.prototype._collapse = function () {
             var icon = this._chevronButton.querySelector(".ms-Icon");
             this._errorBanner.className = "ms-MessageBanner";
-            icon.className = "ms-Icon ms-Icon--chevronsDown";
+            icon.className = "ms-Icon ms-Icon--DoubleChevronDown";
         };
         MessageBanner.prototype._toggleExpansion = function () {
             if (this._errorBanner.className.indexOf("is-expanded") > -1) {

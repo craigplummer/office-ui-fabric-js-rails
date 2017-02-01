@@ -1,7 +1,7 @@
 /* Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. */
 
 /**
- * Office UI Fabric JS 1.2.0
+ * Office UI Fabric JS 1.3.0
  * The JavaScript front-end framework for building experiences for Office 365.
  **/
 
@@ -2432,6 +2432,8 @@
 
 .ms-Panel .ms-Dropdown-items .ms-Dropdown-item {
   padding: 7px 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ms-Panel .ms-Dropdown-items:before {
@@ -2454,7 +2456,10 @@
 }
 
 .ms-Dropdown-title {
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
+  box-shadow: none;
   background: #ffffff;
   border: 1px solid #c8c8c8;
   cursor: pointer;
@@ -2465,15 +2470,18 @@
   overflow: hidden;
 }
 
-.ms-Dropdown-items,
-.ms-Dropdown-title {
-  box-sizing: border-box;
-  margin: 0;
-  box-shadow: none;
+.ms-Dropdown-title.ms-Dropdown-truncator {
+  height: auto;
+  display: block;
+  position: absolute;
+  visibility: hidden;
 }
 
 .ms-Dropdown-items {
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
+  box-shadow: none;
   box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
   background-color: #ffffff;
   display: none;
@@ -2522,6 +2530,8 @@
   position: relative;
   border: 1px solid transparent;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (-ms-high-contrast:active) {
@@ -3149,10 +3159,12 @@
 }
 
 .ms-ContextualHost.ms-ContextualHost--arrowTop .ms-ContextualHost-beak {
+  display: block;
   top: -10px;
 }
 
 .ms-ContextualHost.ms-ContextualHost--arrowBottom .ms-ContextualHost-beak {
+  display: block;
   bottom: -10px;
 }
 
