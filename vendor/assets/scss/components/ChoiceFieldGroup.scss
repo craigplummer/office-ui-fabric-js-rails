@@ -1,5 +1,5 @@
 /**
- * Office UI Fabric JS 1.3.0
+ * Office UI Fabric JS 1.4.0
  * The JavaScript front-end framework for building experiences for Office 365.
  **/
 //== Component: Choicefield group
@@ -12,5 +12,6 @@
   .ms-ChoiceFieldGroup-list {
     padding: 0;
     margin: 0;
+    list-style: none;
   }
 }

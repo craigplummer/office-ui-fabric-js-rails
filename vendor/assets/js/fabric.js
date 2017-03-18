@@ -1,5 +1,5 @@
 /**
- * Office UI Fabric JS 1.3.0
+ * Office UI Fabric JS 1.4.0
  * The JavaScript front-end framework for building experiences for Office 365.
  **/
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
@@ -337,6 +337,37 @@ var fabric;
 
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 /**
+ * Button
+ *
+ * Mostly just a click handler
+ *
+ */
+var fabric;
+(function (fabric) {
+    "use strict";
+    var Button = (function () {
+        function Button(container, clickHandler) {
+            this._container = container;
+            if (clickHandler) {
+                this._clickHandler = clickHandler;
+                this._setClick();
+            }
+        }
+        Button.prototype.disposeEvents = function () {
+            this._container.removeEventListener("click", this._clickHandler, false);
+        };
+        Button.prototype._setClick = function () {
+            this._container.addEventListener("click", this._clickHandler, false);
+        };
+        return Button;
+    }());
+    fabric.Button = Button;
+})(fabric || (fabric = {}));
+
+
+
+// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
+/**
  * @namespace fabric
  */
 var fabric;
@@ -576,37 +607,6 @@ var fabric;
     }());
     fabric.Breadcrumb = Breadcrumb;
 })(fabric || (fabric = {})); // end fabric namespace
-
-// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
-/**
- * Button
- *
- * Mostly just a click handler
- *
- */
-var fabric;
-(function (fabric) {
-    "use strict";
-    var Button = (function () {
-        function Button(container, clickHandler) {
-            this._container = container;
-            if (clickHandler) {
-                this._clickHandler = clickHandler;
-                this._setClick();
-            }
-        }
-        Button.prototype.disposeEvents = function () {
-            this._container.removeEventListener("click", this._clickHandler, false);
-        };
-        Button.prototype._setClick = function () {
-            this._container.addEventListener("click", this._clickHandler, false);
-        };
-        return Button;
-    }());
-    fabric.Button = Button;
-})(fabric || (fabric = {}));
-
-
 
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information.
 /**
@@ -1997,9 +1997,6 @@ var fabric;
             $picker.on({
                 render: function () {
                     _this.updateCustomView($datePicker);
-                },
-                open: function () {
-                    _this.scrollUp($datePicker);
                 }
             });
         }
@@ -2153,12 +2150,6 @@ var fabric;
             /** Highlight the current year. */
             $yearPicker.find(".ms-DatePicker-yearOption").removeClass("is-highlighted");
             $yearPicker.find(".ms-DatePicker-yearOption[data-year='" + $picker.get("highlight").year + "']").addClass("is-highlighted");
-        };
-        /** Scroll the page up so that the field the date picker is attached to is at the top. */
-        DatePicker.prototype.scrollUp = function ($datePicker) {
-            $("html, body").animate({
-                scrollTop: $datePicker.offset().top
-            }, 367);
         };
         DatePicker.prototype.setDateAttributes = function (dateArr) {
             var newYear = dateArr[0], newMonth = dateArr[1], newDay = dateArr[2];

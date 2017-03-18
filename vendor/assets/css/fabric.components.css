@@ -1,6 +1,6 @@
 /* Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. */
 /**
- * Office UI Fabric JS 1.3.0
+ * Office UI Fabric JS 1.4.0
  * The JavaScript front-end framework for building experiences for Office 365.
  **/
 /*
@@ -298,14 +298,26 @@
   color: #a6a6a6;
 }
 
+.ms-Button.ms-Button--small {
+  min-width: 60px;
+  min-height: 24px;
+  height: auto;
+  padding-top: 0;
+  padding-bottom: 4px;
+}
+
+.ms-Button.ms-Button--small .ms-Button-label {
+  font-weight: 400;
+  font-size: 12px;
+}
+
 .ms-Button.ms-Button--hero {
   -ms-flex-align: center;
   align-items: center;
   background-color: transparent;
   border: 0;
-  display: -ms-flexbox;
-  display: flex;
   padding: 0;
+  position: relative;
 }
 
 .ms-Button.ms-Button--hero .ms-Button-icon {
@@ -313,8 +325,7 @@
   display: inline-block;
   font-size: 12px;
   margin-right: 4px;
-  position: relative;
-  top: 1px;
+  padding-top: 5px;
   text-align: center;
 }
 
@@ -333,6 +344,7 @@
   font-weight: 100;
   position: relative;
   text-decoration: none;
+  vertical-align: top;
 }
 
 .ms-Button.ms-Button--hero:hover .ms-Button-icon,
@@ -936,6 +948,7 @@
 .ms-ChoiceFieldGroup .ms-ChoiceFieldGroup-list {
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
 .ms-CommandBar {
@@ -5251,7 +5264,6 @@
 .ms-SearchBox.ms-SearchBox--commandBar .ms-SearchBox-field,
 .ms-SearchBox.ms-SearchBox--commandBar .ms-SearchBox-label {
   height: 40px;
-  line-height: 40px;
 }
 
 .ms-SearchBox.ms-SearchBox--commandBar .ms-SearchBox-field {
