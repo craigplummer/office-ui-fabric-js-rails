@@ -60,7 +60,6 @@ Add the following to your `app/assets/javascripts/application.js` file:
 
 ```
 //= require fabric
-//= require fabric.templates
 ```
 
 For information on how to use the Office UI Fabric framework see the [documentation](http://dev.office.com/fabric)
